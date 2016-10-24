@@ -4,7 +4,7 @@
 package jText;
 
 /**
- * @authors Daniel Larsen, Thomas Nanney, Jacob Lahav,
+ * @authors Daniel Larsen, Thomas Nanney, Jacob Lahav, Jose Bocanegra, Baraon Gallegos
  *
  */
 public class JText {

@@ -57,16 +57,17 @@ public class JTextView extends JFrame {
 
 	public void registerListener(JTextController controller) {
 		Component[] jTextComponents = jText.getMenuComponents();
-		for(Component component : jTextComponents) {
-			if ( component instanceof AbstractButton) { 
-				AbstractButton button = (AbstractButton) component;
+		for(Component jTextComponent : jTextComponents) {
+			if ( jTextComponent instanceof AbstractButton) { 
+				AbstractButton button = (AbstractButton) jTextComponent;
 				button.addActionListener(controller);		
 			}
+		}
 		
 		Component[] fileComponents = file.getMenuComponents();
-		for(Component component : fileComponents) {
-			if ( component instanceof AbstractButton) { 
-				AbstractButton button = (AbstractButton) component;
+		for(Component fileComponent : fileComponents) {
+			if ( fileComponent instanceof AbstractButton) { 
+				AbstractButton button = (AbstractButton) fileComponent;
 				button.addActionListener(controller);
 			}
 		}

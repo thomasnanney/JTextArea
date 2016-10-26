@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Panel;
 
 import javax.swing.AbstractButton;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;

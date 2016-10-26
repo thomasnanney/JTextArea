@@ -10,7 +10,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import test.Test2Controller;
 
 /**
  * JMenu objects jText and file
@@ -18,7 +17,6 @@ import test.Test2Controller;
 
 public class JTextView extends JFrame {
 	
-	private JMenu jText;
 	private JMenu jText;
 
 	private JMenu file;
@@ -44,10 +42,10 @@ public class JTextView extends JFrame {
 		 * Add File menu items to file menu
 		 */
 		
-		JMenuItem save = new JMenuItem("Save");
-		file.add(save);
-		JMenuItem open = new JMenuItem("Open");
-		file.add(open);
+		JMenuItem saveButton = new JMenuItem("Save");
+		file.add(saveButton);
+		JMenuItem openButton = new JMenuItem("Open");
+		file.add(openButton);
 		
 		
 	}

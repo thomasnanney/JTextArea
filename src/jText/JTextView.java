@@ -21,6 +21,8 @@ public class JTextView extends JFrame {
 	private JMenu jText;
 
 	private JMenu file;
+	
+	private JMenu edit;
 
 	
 	public JTextView() {
@@ -30,8 +32,10 @@ public class JTextView extends JFrame {
 		
 		jText = new JMenu("JText");
 		file = new JMenu("File");
+		edit = new JMenu("Edit");
 		menuBar.add(jText);
 		menuBar.add(file);
+		menuBar.add(edit);
 		
 		/**
 		 * Add JText menu items to jtext menu
@@ -43,10 +47,27 @@ public class JTextView extends JFrame {
 		 * Add File menu items to file menu
 		 */
 		
-		JMenuItem saveButton = new JMenuItem("Save");
-		file.add(saveButton);
+		JMenuItem newButton =  new JMenuItem("New");
+		file.add(newButton);
 		JMenuItem openButton = new JMenuItem("Open");
 		file.add(openButton);
+		JMenuItem saveButton = new JMenuItem("Save");
+		file.add(saveButton);
+		JMenuItem saveasButton = new JMenuItem("Save As");
+		file.add(saveasButton);
+		
+		/**
+		 * Add Edit menu items to edit menu
+		 */
+		
+		JMenuItem undoButton = new JMenuItem("Undo");
+		edit.add(undoButton);
+		JMenuItem cutButton = new JMenuItem("Cut");
+		edit.add(cutButton);
+		JMenuItem copyButton = new JMenuItem("Copy");
+		edit.add(copyButton);
+		JMenuItem pasteButton = new JMenuItem("Paste");
+		edit.add(pasteButton);
 		
 		
 	}

@@ -19,8 +19,10 @@ public class JTextController implements ActionListener{
 		} else if (command.equals("Save")){
 			//TODO Save class
 		} else if (command.equals("Open")){
-			//TODO Save class
-		}
+			//TODO Open class
+		} else if (command.equals("New")) {
+			//TODO New class
+		} 
 		
 	}
 }

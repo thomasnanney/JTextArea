@@ -22,7 +22,27 @@ public class JTextController implements ActionListener{
 			//TODO Open class
 		} else if (command.equals("New")) {
 			//TODO New class
-		} 
+		} else if (command.equals("Save As")) {
+			//TODO Save class
+		} else if (command.equals("Undo")) {
+			//TODO Undo
+		} else if (command.equals("Cut")) {
+			//TODO Cut
+		} else if (command.equals("Copy")) {
+			//TODO Copy
+		} else if (command.equals("Paste")) {
+			//TODO Paste
+		} else if (command.equals("Find")) {
+			//TODO Find
+		} else if (command.equals("Find Next")) {
+			//TODO Find Next
+		} else if (command.equals("Replace")) {
+			//TODO Replace
+		} else if (command.equals("Find All")) {
+			//TODO Find All
+		} else if (command.equals("Go To...")) {
+			//TODO Go To
+		}
 		
 	}
 }

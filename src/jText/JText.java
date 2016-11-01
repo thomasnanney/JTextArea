@@ -22,7 +22,7 @@ public class JText {
 		view.registerListener(controller);
 		
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		view.setSize(400, 300);
+		view.setSize(600, 500);
 		view.setVisible(true);
 
 	}

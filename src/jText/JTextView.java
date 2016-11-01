@@ -1,5 +1,7 @@
 package jText;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Component;
 import java.awt.Font;
@@ -10,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 
 /**
@@ -23,7 +28,8 @@ public class JTextView extends JFrame {
 	private JMenu file;
 	
 	private JMenu edit;
-
+	
+	private JTextArea text;
 	
 	public JTextView() {
 		super("JText: A simple text editor");
@@ -36,6 +42,15 @@ public class JTextView extends JFrame {
 		menuBar.add(jText);
 		menuBar.add(file);
 		menuBar.add(edit);
+		/**
+		 * Add area for text
+		 */
+		text = new JTextArea(1, 1);
+		text.setFont(new Font("System", Font.PLAIN, 24));
+		
+		JScrollPane textScroller = new JScrollPane(text);
+		Container contentPane = super.getContentPane();
+		contentPane.add(textScroller, BorderLayout.CENTER);
 		
 		/**
 		 * Add JText menu items to jtext menu

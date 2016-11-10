@@ -45,9 +45,9 @@ public class JTextView extends JFrame {
 		/**
 		 * Add area for text
 		 */
-		text = new JTextArea(1, 1);
+		text = new JTextArea(1,1);
 		text.setFont(new Font("System", Font.PLAIN, 24));
-		
+
 		JScrollPane textScroller = new JScrollPane(text);
 		Container contentPane = super.getContentPane();
 		contentPane.add(textScroller, BorderLayout.CENTER);
@@ -117,6 +117,7 @@ public class JTextView extends JFrame {
 			}
 		}
 	}
+
 	
 	
 }

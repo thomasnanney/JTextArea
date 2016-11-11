@@ -10,16 +10,9 @@ public class JTextControllerCut {
 	
 	private String str;
 	
-	public JTextControllerCut(JTextArea area) {
-		this.area = area;
-		
+	public JTextControllerCut(String str) {
+		this.str = str;
 	}
 
-	public void mouseReleased(MouseEvent e){
-		System.out.println("HERE");
-		////if(area.getHighlights() != null){
-			//str = area.getHightligths();
-		//	System.out.print(str);
-		//}
-	}
+	
 }

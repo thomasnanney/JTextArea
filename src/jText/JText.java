@@ -16,8 +16,9 @@ public class JText {
 	 */
 	public static void main(String[] args) {
 		
-		JTextView view = new JTextView();
-		JTextController controller = new JTextController(view);
+		JTextModel model = new JTextModel();
+		JTextView view = new JTextView(model);
+		JTextController controller = new JTextController(model,view);
 		
 		view.registerListener(controller);
 		

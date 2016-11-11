@@ -24,6 +24,8 @@ import javax.swing.JTextArea;
 
 public class JTextView extends JFrame {
 	
+	private JTextModel model;
+	
 	private JMenu jText;
 
 	private JMenu file;
@@ -32,8 +34,9 @@ public class JTextView extends JFrame {
 	
 	private JTextArea area;
 	
-	public JTextView() {
+	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
+		this.model = model;
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -90,6 +93,8 @@ public class JTextView extends JFrame {
 		edit.add(findnextButton);
 		JMenuItem replaceButton = new JMenuItem("Replace");
 		edit.add(replaceButton);
+		JMenuItem selectAllButton = new JMenuItem("Select All");
+		edit.add(selectAllButton);
 		JMenuItem gotoButton = new JMenuItem("Go To...");
 		edit.add(gotoButton);
 		JMenuItem findallButton = new JMenuItem("Find All");
@@ -143,13 +148,14 @@ public class JTextView extends JFrame {
 	 * @param str
 	 */
 	
-	public void setArea(String str){
-		
-		String current = area.getText();
-		int size = current.length();
-		area.replaceRange(str,0,size);
-		area.update(area.getGraphics());
-	}
+	 public void setArea(String str){
+			
+			String current = area.getText();
+			int size = current.length();
+			area.replaceRange(str,0,size);
+			area.update(area.getGraphics());
+		}
+
 
 	public String getText(){
 		String str = area.getText();
@@ -158,9 +164,27 @@ public class JTextView extends JFrame {
 	}
 
 	public String getSelectedText() {
+		//area.cut();
 		String str = area.getSelectedText();
 		return str;
 	}
+	
+	public void cut() {
+		area.cut();
+	}
+	
+	public void copy() {
+		area.copy();
+	}
+	
+	public void paste() {
+		area.paste();
+	}
+	
+	public void selectAll(){
+		area.selectAll();
+	}
+	
 	
 	
 }

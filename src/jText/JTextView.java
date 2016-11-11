@@ -117,6 +117,22 @@ public class JTextView extends JFrame {
 			}
 		}
 	}
+	
+	/**
+	 * setArea takes in a string
+	 * gets the size of what is currently being displayed in the JTextArea
+	 * replaces what is currently being displayed with string param
+	 * updates the area
+	 * @param str
+	 */
+	
+	public void setArea(String str){
+		
+		String current = text.getText();
+		int size = current.length();
+		text.replaceRange(str,0,size);
+		text.update(text.getGraphics());
+	}
 
 	
 	

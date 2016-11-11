@@ -16,6 +16,8 @@ public class JTextController implements ActionListener{
 	
 	private JTextControllerOpen open;
 	
+	private JTextArea area;
+	
 	public JTextController(JTextView view) {
 		this.view = view;
 	}
@@ -38,7 +40,9 @@ public class JTextController implements ActionListener{
 			/**
 			 * cant figure out how to display string on JTextArea
 			 */
-			System.out.println(str);
+			//System.out.println(str);
+			view.setArea(str);
+
 	            
 
 		} else if (command.equals("New")) {

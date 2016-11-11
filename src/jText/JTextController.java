@@ -43,7 +43,11 @@ public class JTextController implements ActionListener{
 			view.setArea(str);
 
 		} else if (command.equals("New")) {
-			//TODO New class
+			
+			String n = "";
+			view.setArea(n);
+			
+			
 		} else if (command.equals("Save As")) {
 			
 			saveAs = new JTextControllerSaveAs();

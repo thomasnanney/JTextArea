@@ -134,6 +134,11 @@ public class JTextView extends JFrame {
 		text.update(text.getGraphics());
 	}
 
+	public String getText(){
+		String str = text.getText();
+		//System.out.println(str);
+		return str;
+	}
 	
 	
 }

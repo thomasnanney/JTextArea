@@ -2,6 +2,7 @@ package jText;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +22,8 @@ public class JTextController implements ActionListener{
 	private JTextArea area;
 	
 	private JTextControllerSaveAs saveAs;
+	
+	private JTextControllerCut cut;
 	
 	public JTextController(JTextView view) {
 		this.view = view;
@@ -59,13 +62,16 @@ public class JTextController implements ActionListener{
 			}
 						
 		} else if (command.equals("Undo")) {
-			//TODO Undo
+			//System.out.println("\nHEREUNDO\n");
 		} else if (command.equals("Cut")) {
-			//TODO Cut
+			String cutString = view.getSelectedText();
+			//System.out.println("\nHERECUT\n");
+			System.out.println(cutString);
+			cut = new JTextControllerCut( area);
 		} else if (command.equals("Copy")) {
-			//TODO Copy
+			//System.out.println("\nHERECOPY\n");
 		} else if (command.equals("Paste")) {
-			//TODO Paste
+			//System.out.println("\nHEREPASTE\n");
 		} else if (command.equals("Find")) {
 			//TODO Find
 		} else if (command.equals("Find Next")) {
@@ -78,5 +84,13 @@ public class JTextController implements ActionListener{
 			//TODO Go To
 		}
 		
+	}
+	
+	public void mouseReleased(MouseEvent e){
+		System.out.println("HERE");
+		if(area.getSelectedText() != null){
+			String str = area.getSelectedText();
+			System.out.print(str);
+		}
 	}
 }

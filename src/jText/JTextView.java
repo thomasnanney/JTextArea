@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Panel;
+import java.awt.event.MouseListener;
 
 import javax.swing.AbstractButton;
 import javax.swing.JFrame;
@@ -29,7 +30,7 @@ public class JTextView extends JFrame {
 	
 	private JMenu edit;
 	
-	private JTextArea text;
+	private JTextArea area;
 	
 	public JTextView() {
 		super("JText: A simple text editor");
@@ -45,10 +46,10 @@ public class JTextView extends JFrame {
 		/**
 		 * Add area for text
 		 */
-		text = new JTextArea(1,1);
-		text.setFont(new Font("System", Font.PLAIN, 24));
+		area = new JTextArea(1,1);
+		area.setFont(new Font("System", Font.PLAIN, 24));
 
-		JScrollPane textScroller = new JScrollPane(text);
+		JScrollPane textScroller = new JScrollPane(area);
 		Container contentPane = super.getContentPane();
 		contentPane.add(textScroller, BorderLayout.CENTER);
 		
@@ -116,6 +117,22 @@ public class JTextView extends JFrame {
 				button.addActionListener(controller);
 			}
 		}
+		
+		Component[] editComponents = edit.getMenuComponents();
+		for(Component editComponent : editComponents) {
+			if ( editComponent instanceof AbstractButton) { 
+				AbstractButton button = (AbstractButton) editComponent;
+				button.addActionListener(controller);
+			}
+		}
+		
+		Component[] areaComponents = area.getComponents();
+		for(Component areaComponent : areaComponents) {
+			if ( areaComponent instanceof AbstractButton) { 
+				AbstractButton button = (AbstractButton) areaComponent;
+				button.addMouseListener((MouseListener) controller);
+			}
+		}
 	}
 	
 	/**
@@ -128,15 +145,20 @@ public class JTextView extends JFrame {
 	
 	public void setArea(String str){
 		
-		String current = text.getText();
+		String current = area.getText();
 		int size = current.length();
-		text.replaceRange(str,0,size);
-		text.update(text.getGraphics());
+		area.replaceRange(str,0,size);
+		area.update(area.getGraphics());
 	}
 
 	public String getText(){
-		String str = text.getText();
+		String str = area.getText();
 		//System.out.println(str);
+		return str;
+	}
+
+	public String getSelectedText() {
+		String str = area.getSelectedText();
 		return str;
 	}
 	

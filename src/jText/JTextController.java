@@ -79,6 +79,7 @@ public class JTextController implements ActionListener{
 			
 			String n = "";
 			view.setArea(n);
+			name = "";
 			
 			
 		} else if (command.equals("Save As")) {

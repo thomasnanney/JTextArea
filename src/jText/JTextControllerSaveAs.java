@@ -60,12 +60,11 @@ public class JTextControllerSaveAs {
 	 */
 	
 	public void saveText(String str) throws IOException{
-		File file = null;
 		try {
 			file = getFile();
 		} catch (FileNotFoundException e1) {
 			if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
-    			return;
+				throw new FileNotFoundException("User selected cancel");
     		}
 			System.err.println(e1 + "\n");
 		}
@@ -79,4 +78,7 @@ public class JTextControllerSaveAs {
 	      }
 	}
 
+	public String getName(){
+		return file.getPath();
+	}
 }

@@ -21,11 +21,13 @@ public class JTextControllerOpen {
 	
 	public static String string;
 	
+	public File fileOpen;
+	
 	public JTextControllerOpen() throws FileNotFoundException{
 		FileInputStream stream = null;
         String str = "";
         try {
-        	File fileOpen = getFile();
+        	fileOpen = getFile();
         	stream = new FileInputStream(fileOpen);
             int content;
             while ((content = stream.read()) != -1) {
@@ -35,16 +37,11 @@ public class JTextControllerOpen {
            // System.out.println(str);
         } catch (IOException e1) {
         	if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
-    			return;
+        		throw new FileNotFoundException("User selected cancel");
     		}
         	System.err.println(e1 + "\n");
         }
-        
         this.string = str;
-        
-        
-		
-		
 	}
 
 	public static File getFile() throws FileNotFoundException{
@@ -70,7 +67,8 @@ public class JTextControllerOpen {
 	public static String returnString() {
 		return string;
 	}
-		
 	
-
+	public String getName(){
+		return fileOpen.getPath();
+	}
 }

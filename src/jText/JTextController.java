@@ -27,6 +27,10 @@ public class JTextController implements ActionListener{
 	
 	private JTextModel model;
 	
+	private JTextControllerSave save;
+	
+	private String name = "";
+	
 	public JTextController(JTextModel model,JTextView view) {
 		this.view = view;
 		this.model = model;
@@ -40,15 +44,36 @@ public class JTextController implements ActionListener{
 		if (command.equals("Exit")) {
 			System.exit(0);
 		} else if (command.equals("Save")){
-			//TODO Save class
+			if(name.equals("")){ //Same as saveAs
+				try {
+					saveAs = new JTextControllerSaveAs();
+					String str = view.getText();
+					saveAs.saveText(str);
+					name = saveAs.getName();
+				} catch (IOException e1) {
+					if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
+						return;
+					}
+					System.err.println(e1 + "\n");
+				}	
+			} else{ //Use current file name
+				File file = new File(name);
+				String str = view.getText();
+				save = new JTextControllerSave(file, str);
+			}
+
 		} else if (command.equals("Open")){
 			try {
 				open = new JTextControllerOpen();
+				String str = open.returnString();
+				name = open.getName();
+				view.setArea(str);
 			} catch (FileNotFoundException e1) {
+				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
+					return;
+				}
 				System.err.println(e1 + "\n");
 			}
-			String str = open.returnString();
-			view.setArea(str);
 
 		} else if (command.equals("New")) {
 			
@@ -57,15 +82,18 @@ public class JTextController implements ActionListener{
 			
 			
 		} else if (command.equals("Save As")) {
-			
-			saveAs = new JTextControllerSaveAs();
-			String str = view.getText();
 			try {
+				saveAs = new JTextControllerSaveAs();
+				String str = view.getText();
 				saveAs.saveText(str);
+				name = saveAs.getName();	
 			} catch (IOException e1) {
+				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
+					return;
+				}
 				System.err.println(e1 + "\n");
 			}
-						
+			
 		} else if (command.equals("Undo")) {
 		} else if (command.equals("Cut")) {
 			view.cut();

@@ -100,6 +100,7 @@ public class JTextView extends JFrame {
 		JMenuItem findallButton = new JMenuItem("Find All");
 		edit.add(findallButton);
 		
+		
 	}
 	
 	/**
@@ -183,6 +184,20 @@ public class JTextView extends JFrame {
 	
 	public void selectAll(){
 		area.selectAll();
+	}
+
+	public int length() {
+		if(area.isEnabled()){
+			String str = area.getText();
+			if(str != null){
+				int i =  str.length();
+				return i;
+			} else {
+				return -1;
+			}
+		} else {
+			return -1;
+		}
 	}
 	
 	

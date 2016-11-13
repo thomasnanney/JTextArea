@@ -30,6 +30,8 @@ public class JTextController implements ActionListener{
 	public JTextController(JTextModel model,JTextView view) {
 		this.view = view;
 		this.model = model;
+		
+		
 	}
 
 	@Override

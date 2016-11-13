@@ -24,8 +24,19 @@ public class JText {
 		
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		view.setSize(600, 500);
-		view.setVisible(true);
-
+		view.setVisible(true);	
+		
+		int i = 0;
+		for (;;){
+			if(view.length()>i){
+				String str = view.getText();
+				JTextAreaContents jtextAreaContents = new JTextAreaContents(view,str);
+				System.out.println(str);
+				i++;
+			}
+			
+		}
+			
 	}
 
 }

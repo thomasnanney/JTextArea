@@ -22,10 +22,10 @@ public class JTextControllerOpen {
 	public static String string;
 	
 	public JTextControllerOpen() throws FileNotFoundException{
-		File fileOpen = getFile();
 		FileInputStream stream = null;
         String str = "";
         try {
+        	File fileOpen = getFile();
         	stream = new FileInputStream(fileOpen);
             int content;
             while ((content = stream.read()) != -1) {
@@ -34,7 +34,10 @@ public class JTextControllerOpen {
             }
            // System.out.println(str);
         } catch (IOException e1) {
-            e1.printStackTrace();
+        	if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
+    			return;
+    		}
+        	System.err.println(e1 + "\n");
         }
         
         this.string = str;

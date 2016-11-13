@@ -45,7 +45,7 @@ public class JTextController implements ActionListener{
 			try {
 				open = new JTextControllerOpen();
 			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
+				System.err.println(e1 + "\n");
 			}
 			String str = open.returnString();
 			view.setArea(str);
@@ -63,7 +63,7 @@ public class JTextController implements ActionListener{
 			try {
 				saveAs.saveText(str);
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				System.err.println(e1 + "\n");
 			}
 						
 		} else if (command.equals("Undo")) {

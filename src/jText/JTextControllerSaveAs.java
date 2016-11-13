@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
-
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -65,7 +64,10 @@ public class JTextControllerSaveAs {
 		try {
 			file = getFile();
 		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+			if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
+    			return;
+    		}
+			System.err.println(e1 + "\n");
 		}
 		BufferedWriter outFile = null;
 	      try {
@@ -73,7 +75,7 @@ public class JTextControllerSaveAs {
 	         outFile.write(str);
 	         outFile.close();
 	      } catch (IOException ex) {
-	         ex.printStackTrace();
+	    	  System.err.println(ex + "\n");
 	      }
 	}
 

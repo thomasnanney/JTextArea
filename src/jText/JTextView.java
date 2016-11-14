@@ -159,10 +159,6 @@ public class JTextView extends JFrame {
 	public JTextArea getArea(){
 		return area;
 	}
-	
-	public void updateArea(JTextArea area){
-		this.area = area;
-	}
 
 	public String getText(){
 		String str = area.getText();

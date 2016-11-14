@@ -11,23 +11,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 public class JTextController implements ActionListener{
 	
 	private JTextView view;
-	
 	private JTextControllerOpen open;
-	
 	private JTextArea area;
-	
 	private JTextControllerSaveAs saveAs;
-	
 	private JTextControllerCut cut;
-	
 	private JTextModel model;
-	
 	private JTextControllerSave save;
+	
+	
 	
 	public JTextController(JTextModel model,JTextView view) {
 		this.view = view;
@@ -99,7 +96,9 @@ public class JTextController implements ActionListener{
 		} else if (command.equals("Paste")) {
 			view.paste();
 		} else if (command.equals("Find")) {
-			//TODO Find
+			JTextFind findWindow = new JTextFind(view);
+			findWindow.setSize(300,150);
+			findWindow.setVisible(true);
 		} else if (command.equals("Select All")) {
 			view.selectAll();
 		} else if (command.equals("Find Next")) {

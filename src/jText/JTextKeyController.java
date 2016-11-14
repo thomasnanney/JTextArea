@@ -21,8 +21,11 @@ public class JTextKeyController {
 	                ActionEvent e = new ActionEvent(controller, 0, "Save");
 	                controller.actionPerformed(e);
 	            }
+	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_F) {
+	                ActionEvent e = new ActionEvent(controller, 0, "Find");
+	                controller.actionPerformed(e);
+	            }
 	        }
 	    });
-		view.updateArea(area);
 	}
 }

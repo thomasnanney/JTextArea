@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
+import java.awt.event.KeyEvent;
 
 /**
  * JMenu objects jText and file
@@ -33,6 +33,7 @@ public class JTextView extends JFrame {
 	private JMenu edit;
 	
 	private JTextArea area;
+	
 	
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
@@ -99,8 +100,6 @@ public class JTextView extends JFrame {
 		edit.add(gotoButton);
 		JMenuItem findallButton = new JMenuItem("Find All");
 		edit.add(findallButton);
-		
-		
 	}
 	
 	/**
@@ -149,14 +148,21 @@ public class JTextView extends JFrame {
 	 * @param str
 	 */
 	
-	 public void setArea(String str){
+	public void setArea(String str){
 			
 			String current = area.getText();
 			int size = current.length();
 			area.replaceRange(str,0,size);
 			area.update(area.getGraphics());
-		}
-
+	}
+	
+	public JTextArea getArea(){
+		return area;
+	}
+	
+	public void updateArea(JTextArea area){
+		this.area = area;
+	}
 
 	public String getText(){
 		String str = area.getText();

@@ -9,9 +9,17 @@ public class JTextModel {
 	
 	private JTextArea area;
 	
+	private String name = "";
+	
 	public JTextModel() {
 		
 	}
 	
+  	public String getName(){
+  		return name;
+  	}
   	
+  	public void setName(String name){
+  		this.name = name;
+  	}
 }

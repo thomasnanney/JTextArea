@@ -29,13 +29,9 @@ public class JTextController implements ActionListener{
 	
 	private JTextControllerSave save;
 	
-	private String name = "";
-	
 	public JTextController(JTextModel model,JTextView view) {
 		this.view = view;
 		this.model = model;
-		
-		
 	}
 
 	@Override
@@ -44,20 +40,20 @@ public class JTextController implements ActionListener{
 		if (command.equals("Exit")) {
 			System.exit(0);
 		} else if (command.equals("Save")){
-			if(name.equals("")){ //Same as saveAs
+			if(model.getName().equals("")){ //Same as saveAs
 				try {
 					saveAs = new JTextControllerSaveAs();
 					String str = view.getText();
 					saveAs.saveText(str);
-					name = saveAs.getName();
+					model.setName(saveAs.getName());
 				} catch (IOException e1) {
 					if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 						return;
 					}
 					System.err.println(e1 + "\n");
-				}	
+				}
 			} else{ //Use current file name
-				File file = new File(name);
+				File file = new File(model.getName());
 				String str = view.getText();
 				save = new JTextControllerSave(file, str);
 			}
@@ -66,7 +62,7 @@ public class JTextController implements ActionListener{
 			try {
 				open = new JTextControllerOpen();
 				String str = open.returnString();
-				name = open.getName();
+				model.setName(open.getName());
 				view.setArea(str);
 			} catch (FileNotFoundException e1) {
 				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
@@ -79,7 +75,7 @@ public class JTextController implements ActionListener{
 			
 			String n = "";
 			view.setArea(n);
-			name = "";
+			model.setName("");
 			
 			
 		} else if (command.equals("Save As")) {
@@ -87,7 +83,7 @@ public class JTextController implements ActionListener{
 				saveAs = new JTextControllerSaveAs();
 				String str = view.getText();
 				saveAs.saveText(str);
-				name = saveAs.getName();	
+				model.setName(saveAs.getName());
 			} catch (IOException e1) {
 				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 					return;

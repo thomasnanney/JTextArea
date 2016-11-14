@@ -19,7 +19,8 @@ public class JText {
 		JTextModel model = new JTextModel();
 		JTextView view = new JTextView(model);
 		JTextController controller = new JTextController(model,view);
-		
+		JTextKeyController keyController = new JTextKeyController(view);
+		keyController.registerKeyListener(controller);
 		view.registerListener(controller);
 		
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

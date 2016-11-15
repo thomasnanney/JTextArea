@@ -16,6 +16,7 @@ public class JTextFindHandler implements ActionListener{
 	private JTextView view;
 	private JTextArea area;
 	private int action = 0; //0 == find, 1 == find all
+	private int iCase = 1; //1 == case sensitive, -1 == ignore case
 	
 	public JTextFindHandler(JTextField field, JTextView view){
 		this.field = field;
@@ -30,6 +31,9 @@ public class JTextFindHandler implements ActionListener{
 				break;
 			case "Find All":
 				action = 1;
+				break;
+			case "Ignore Case":
+				iCase *= -1;
 				break;
 			default:
 				int p0, p1, end;

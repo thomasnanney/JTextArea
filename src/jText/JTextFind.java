@@ -24,11 +24,24 @@ public class JTextFind extends JFrame{
 
 		/* CENTER:
 		 */
-		JButton button = new JButton("Find");
-		button.setFont(new Font("System", Font.PLAIN, 30));
+		panelCenter.setLayout(new GridLayout(1, 3));
+		JRadioButton rButton1 = new JRadioButton("Find");
+		JRadioButton rButton2 = new JRadioButton("Find All");
+		JButton button = new JButton("Enter");
+		rButton1.setFont(new Font("System", Font.PLAIN, 25));
+		rButton2.setFont(new Font("System", Font.PLAIN, 25));
+		button.setFont(new Font("System", Font.PLAIN, 25));
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(rButton1);
+		rButton1.setSelected(true);
+		buttonGroup.add(rButton2);
+		panelCenter.add(rButton1);
 		panelCenter.add(button);
+		panelCenter.add(rButton2);
 		
 		JTextFindHandler handler = new JTextFindHandler(userField, view);
 		button.addActionListener(handler);
+		rButton1.addActionListener(handler);
+		rButton2.addActionListener(handler);
 	}
 }

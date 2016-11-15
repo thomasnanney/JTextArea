@@ -7,11 +7,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-
-import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 public class JTextController implements ActionListener{
@@ -97,7 +93,7 @@ public class JTextController implements ActionListener{
 			view.paste();
 		} else if (command.equals("Find")) {
 			JTextFind findWindow = new JTextFind(view);
-			findWindow.setSize(300,150);
+			findWindow.setSize(350,160);
 			findWindow.setVisible(true);
 		} else if (command.equals("Select All")) {
 			view.selectAll();

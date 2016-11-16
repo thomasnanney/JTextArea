@@ -41,12 +41,12 @@ public class JTextFindHandler implements ActionListener{
 				String str = view.getText();
 				Highlighter highlighter = area.getHighlighter();
 				highlighter.removeAllHighlights();
-				if(!str.contains(match) || match.equals("")){return;}
 			    HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.gray);
 			    if(iCase == -1){
 	    			match = match.toLowerCase();
 	    			str = str.toLowerCase();
 	    		}
+			    if(!str.contains(match) || match.equals("")){return;}
 			    switch(action){
 			    	case 0:
 			    		p0 = str.indexOf(match);

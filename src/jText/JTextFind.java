@@ -24,7 +24,7 @@ public class JTextFind extends JFrame{
 
 		/* CENTER:
 		 */
-		panelCenter.setLayout(new GridLayout(1, 3));
+		panelCenter.setLayout(new GridLayout(2, 2));
 		JRadioButton rButton1 = new JRadioButton("Find");
 		JRadioButton rButton2 = new JRadioButton("Find All");
 		JCheckBox checkbox = new JCheckBox("Ignore Case");

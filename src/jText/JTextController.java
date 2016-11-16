@@ -100,9 +100,9 @@ public class JTextController implements ActionListener{
 		} else if (command.equals("Find Next")) {
 			//TODO Find Next
 		} else if (command.equals("Replace")) {
-			//TODO Replace
-		} else if (command.equals("Find All")) {
-			//TODO Find All
+			JTextReplace replaceWindow = new JTextReplace(view);
+			replaceWindow.setSize(350,210);
+			replaceWindow.setVisible(true);
 		} else if (command.equals("Go To...")) {
 			//TODO Go To
 		}

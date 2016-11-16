@@ -98,8 +98,6 @@ public class JTextView extends JFrame {
 		edit.add(selectAllButton);
 		JMenuItem gotoButton = new JMenuItem("Go To...");
 		edit.add(gotoButton);
-		JMenuItem findallButton = new JMenuItem("Find All");
-		edit.add(findallButton);
 	}
 	
 	/**

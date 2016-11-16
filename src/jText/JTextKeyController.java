@@ -25,6 +25,10 @@ public class JTextKeyController {
 	                ActionEvent e = new ActionEvent(controller, 0, "Find");
 	                controller.actionPerformed(e);
 	            }
+	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_R) {
+	                ActionEvent e = new ActionEvent(controller, 0, "Replace");
+	                controller.actionPerformed(e);
+	            }
 	        }
 	    });
 	}

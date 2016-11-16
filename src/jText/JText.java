@@ -45,10 +45,8 @@ public class JText {
 				/*
 				 * End of highlight
 				 */
-				String str = view.getText();
-				JTextAreaContents jtextAreaContents = new JTextAreaContents(view,str);
-				System.out.println(str);
 				i++;
+				
 			}
 			
 		}

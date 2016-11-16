@@ -2,6 +2,13 @@ package jText;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This class will open a JPanel for the user to enter
+ * 	a word. Once the user hits enter in the userField,
+ * 	JTextFindHandler will highlight the word.
+ * 
+ * @author Jose Bocanegra
+ */
 public class JTextFind extends JFrame{
 	
 	

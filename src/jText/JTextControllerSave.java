@@ -5,6 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * This class will save into an already existing
+ * 	and opened file.
+ * 
+ * @author Jose Bocanegra
+ */
 public class JTextControllerSave {
 	
 	public JTextControllerSave(File file, String s){

@@ -4,6 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextArea;
 
+/**
+ * This class will register keys typed in, specifically when
+ * 	typed with Ctrl (ie. Ctrl+S).
+ * 
+ * @author Jose Bocanegra
+ */
 public class JTextKeyController {
 
 	JTextView view;

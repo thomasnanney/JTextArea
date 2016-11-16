@@ -3,6 +3,14 @@ import java.awt.*;
 
 import javax.swing.*;
 
+/**
+ * This class will open a JPanel for the user to enter
+ * 	two words, one for the word to be replace and one
+ * 	for the new word. Once the user hits the replace button,
+ * 	JTextReplaceHandler will replace the word.
+ * 
+ * @author Jose Bocanegra
+ */
 public class JTextReplace extends JFrame{
 
 	public JTextReplace(JTextView view){

@@ -5,9 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import javax.swing.JFileChooser;
-import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -48,34 +47,47 @@ public class JTextControllerSaveAs {
 			throw new FileNotFoundException("User selected cancel");
 		
 		File file = fileChooser.getSelectedFile();
-		
+		if(!fileChooser.getSelectedFile().getAbsolutePath().endsWith(".txt")){
+			file = new File(fileChooser.getSelectedFile() + ".txt");
+		}
 		
 		return file;
-		}
+	}
 	
 	/**
-	 * saveText takes in Strin str and saves it to file 
-	 * @param str
-	 * @throws IOException
+	 * saveText takes in String str and saves it to file 
+	 * 	It will check if file already exists. If it does, prompt the user
+	 * 	if they want to overwrite it.
+	 * 	@param str
+	 * 	@throws IOException
 	 */
 	
 	public void saveText(String str) throws IOException{
-		try {
+		try{
 			file = getFile();
-		} catch (FileNotFoundException e1) {
-			if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
-				throw new FileNotFoundException("User selected cancel");
-    		}
-			System.err.println(e1 + "\n");
+			if(!file.exists()) {
+				file.createNewFile();
+				BufferedWriter outfile = new BufferedWriter(new FileWriter(file));
+				outfile.write(str);
+				outfile.close();  
+			} else {
+				String message = "File • " + file.getName() + " • already exist in \n" + file.getParent() + ":\n" + "Do you want to overwrite?";
+	            String title = "Warning";
+	            int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+	            if(reply == JOptionPane.YES_OPTION){
+	            	file.delete();
+	            	file.createNewFile();
+	            	BufferedWriter out = new BufferedWriter(new FileWriter(file));
+	            	out.write(str);
+	            	out.close();
+	            	JOptionPane.showMessageDialog(null, "File • " + file.getName() + " • overwritten succesfully in \n" + file.getParent());
+	            } else{
+	            	throw new FileNotFoundException("User selected cancel");
+	            }
+			}
+		} catch(IOException e) {
+	    	   throw e;
 		}
-		BufferedWriter outFile = null;
-	      try {
-	         outFile = new BufferedWriter(new FileWriter(file));
-	         outFile.write(str);
-	         outFile.close();
-	      } catch (IOException ex) {
-	    	  System.err.println(ex + "\n");
-	      }
 	}
 
 	public String getName(){

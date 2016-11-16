@@ -10,6 +10,14 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 
+/**
+ * This class will activate when the user hits enter on Find
+ * 	UserField or when user changes find specifications. Depending on
+ * 	the Find specifications (ie. ignore case), this class will 
+ * 	highlight the found matches.
+ * 
+ * @author Jose Bocanegra
+ */
 public class JTextFindHandler implements ActionListener{
 	
 	private JTextField field;

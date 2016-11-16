@@ -14,9 +14,7 @@ public class JTextController implements ActionListener{
 	
 	private JTextView view;
 	private JTextControllerOpen open;
-	private JTextArea area;
 	private JTextControllerSaveAs saveAs;
-	private JTextControllerCut cut;
 	private JTextModel model;
 	private JTextControllerSave save;
 	

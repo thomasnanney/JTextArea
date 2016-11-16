@@ -24,8 +24,6 @@ import java.awt.event.KeyEvent;
 
 public class JTextView extends JFrame {
 	
-	private JTextModel model;
-	
 	private JMenu jText;
 
 	private JMenu file;
@@ -37,7 +35,6 @@ public class JTextView extends JFrame {
 	
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
-		this.model = model;
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -82,6 +79,8 @@ public class JTextView extends JFrame {
 		
 		JMenuItem undoButton = new JMenuItem("Undo");
 		edit.add(undoButton);
+		JMenuItem redoButton = new JMenuItem("Redo");
+		edit.add(redoButton);
 		JMenuItem cutButton = new JMenuItem("Cut");
 		edit.add(cutButton);
 		JMenuItem copyButton = new JMenuItem("Copy");

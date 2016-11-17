@@ -47,6 +47,14 @@ public class JTextKeyController {
 	            	ActionEvent e = new ActionEvent(controller, 0, "Paste");
 	            	controller.actionPerformed(e);
 	            }
+	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_Z){
+	            	ActionEvent e = new ActionEvent(controller, 0, "Undo		CTRL+Z");
+	            	controller.actionPerformed(e);
+	            }
+	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_Y){
+	            	ActionEvent e = new ActionEvent(controller, 0, "Redo");
+	            	controller.actionPerformed(e);
+	            }
 	        }
 	    });
 	}

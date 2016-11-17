@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JTextArea;
+import javax.swing.undo.UndoManager;
 
 public class JTextController implements ActionListener{
 	
@@ -17,12 +18,15 @@ public class JTextController implements ActionListener{
 	private JTextControllerSaveAs saveAs;
 	private JTextModel model;
 	private JTextControllerSave save;
+	public UndoManager undoManager;
 	
 	
 	
 	public JTextController(JTextModel model,JTextView view) {
 		this.view = view;
 		this.model = model;
+		this.undoManager = view.getUndoManager();
+		
 	}
 
 	@Override
@@ -82,7 +86,10 @@ public class JTextController implements ActionListener{
 				System.err.println(e1 + "\n");
 			}
 			
-		} else if (command.equals("Undo")) {
+		} else if (command.equals("Undo		CTRL+Z")) {
+			undoManager.undo();
+		} else if (command.equals("Redo")) {
+			undoManager.redo();
 		} else if (command.equals("Cut")) {
 			view.cut();
 		} else if (command.equals("Copy")) {

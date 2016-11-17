@@ -16,6 +16,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoManager;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -31,6 +35,8 @@ public class JTextView extends JFrame {
 	private JMenu edit;
 	
 	private JTextArea area;
+	
+	protected UndoManager undoManager = new UndoManager();
 	
 	
 	public JTextView(JTextModel model) {
@@ -77,7 +83,7 @@ public class JTextView extends JFrame {
 		 * Add Edit menu items to edit menu
 		 */
 		
-		JMenuItem undoButton = new JMenuItem("Undo");
+		JMenuItem undoButton = new JMenuItem("Undo		CTRL+Z");
 		edit.add(undoButton);
 		JMenuItem redoButton = new JMenuItem("Redo");
 		edit.add(redoButton);
@@ -97,6 +103,18 @@ public class JTextView extends JFrame {
 		edit.add(selectAllButton);
 		JMenuItem gotoButton = new JMenuItem("Go To...");
 		edit.add(gotoButton);
+		
+		
+		/**
+		 * code to use undo and redo
+		 */
+		area.getDocument().addUndoableEditListener(
+				new UndoableEditListener(){
+					public void undoableEditHappened(UndoableEditEvent e){
+					undoManager.addEdit(e.getEdit());
+					}
+				}
+			);
 	}
 	
 	/**
@@ -161,6 +179,10 @@ public class JTextView extends JFrame {
 		String str = area.getText();
 		//System.out.println(str);
 		return str;
+	}
+	
+	public UndoManager getUndoManager(){
+		return undoManager;
 	}
 
 	public String getSelectedText() {

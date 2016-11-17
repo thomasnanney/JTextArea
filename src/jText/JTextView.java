@@ -74,6 +74,27 @@ public class JTextView extends JFrame {
 		file.add(newButton);
 		JMenuItem openButton = new JMenuItem("Open");
 		file.add(openButton);
+		
+		
+		/**
+		 * code to add open recent
+		 */
+		
+		
+		JMenu openRecentMenu = new JMenu("Open Recent");
+		JMenuItem recent1 = new JMenuItem("Recent 1");
+		JMenuItem recent2 = new JMenuItem("Recent 2");
+		JMenuItem recent3 = new JMenuItem("Recent 3");
+		JMenuItem recent4 = new JMenuItem("Recent 4");
+		JMenuItem recent5 = new JMenuItem("Recent 5");
+		openRecentMenu.add(recent1);
+		openRecentMenu.add(recent2);
+		openRecentMenu.add(recent3);
+		openRecentMenu.add(recent4);
+		openRecentMenu.add(recent5);
+		file.add(openRecentMenu);
+		//end of add recent 
+		
 		JMenuItem saveButton = new JMenuItem("Save");
 		file.add(saveButton);
 		JMenuItem saveasButton = new JMenuItem("Save As");

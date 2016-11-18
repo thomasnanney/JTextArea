@@ -2,10 +2,8 @@ package jText;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Graphics;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Panel;
 import java.awt.event.MouseListener;
 
 import javax.swing.AbstractButton;
@@ -13,14 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
-import javax.swing.undo.UndoManager;
-
-import java.awt.event.KeyEvent;
+import javax.swing.undo.*;
 
 /**
  * JMenu objects jText and file
@@ -29,21 +24,19 @@ import java.awt.event.KeyEvent;
 public class JTextView extends JFrame {
 	
 	private JMenu jText;
-
 	private JMenu file;
-	
 	private JMenu edit;
-	
 	private JTextArea area;
-	
 	protected UndoManager undoManager = new UndoManager();
 	
+	public JTextView(){
+		
+	}
 	
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
 		jText = new JMenu("JText");
 		file = new JMenu("File");
 		edit = new JMenu("Edit");
@@ -75,30 +68,16 @@ public class JTextView extends JFrame {
 		JMenuItem openButton = new JMenuItem("Open");
 		file.add(openButton);
 		
-		
-		/**
-		 * code to add open recent
-		 */
-		
-		
-		JMenu openRecentMenu = new JMenu("Open Recent");
-		JMenuItem recent1 = new JMenuItem("Recent 1");
-		JMenuItem recent2 = new JMenuItem("Recent 2");
-		JMenuItem recent3 = new JMenuItem("Recent 3");
-		JMenuItem recent4 = new JMenuItem("Recent 4");
-		JMenuItem recent5 = new JMenuItem("Recent 5");
-		openRecentMenu.add(recent1);
-		openRecentMenu.add(recent2);
-		openRecentMenu.add(recent3);
-		openRecentMenu.add(recent4);
-		openRecentMenu.add(recent5);
-		file.add(openRecentMenu);
-		//end of add recent 
-		
 		JMenuItem saveButton = new JMenuItem("Save");
 		file.add(saveButton);
 		JMenuItem saveasButton = new JMenuItem("Save As");
 		file.add(saveasButton);
+		
+		/**
+		 * code to add open recent
+		 */
+		model.setFile(file);
+		//end of add recent 
 		
 		/**
 		 * Add Edit menu items to edit menu
@@ -125,17 +104,16 @@ public class JTextView extends JFrame {
 		JMenuItem gotoButton = new JMenuItem("Go To...");
 		edit.add(gotoButton);
 		
-		
 		/**
 		 * code to use undo and redo
 		 */
 		area.getDocument().addUndoableEditListener(
 				new UndoableEditListener(){
 					public void undoableEditHappened(UndoableEditEvent e){
-					undoManager.addEdit(e.getEdit());
+						undoManager.addEdit(e.getEdit());
 					}
 				}
-			);
+		);
 	}
 	
 	/**
@@ -185,11 +163,10 @@ public class JTextView extends JFrame {
 	 */
 	
 	public void setArea(String str){
-			
-			String current = area.getText();
-			int size = current.length();
-			area.replaceRange(str,0,size);
-			area.update(area.getGraphics());
+		String current = area.getText();
+		int size = current.length();
+		area.replaceRange(str,0,size);
+		area.update(area.getGraphics());
 	}
 	
 	public JTextArea getArea(){

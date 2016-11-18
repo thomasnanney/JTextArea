@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
 public class JTextControllerOpen {
 	
 	public static String string;
-	
 	public File fileOpen;
 	
 	public JTextControllerOpen() throws FileNotFoundException{
@@ -34,11 +33,27 @@ public class JTextControllerOpen {
                 str += (char) content;
                 
             }
-           // System.out.println(str);
         } catch (IOException e1) {
         	if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
         		throw new FileNotFoundException("User selected cancel");
     		}
+        	System.err.println(e1 + "\n");
+        }
+        this.string = str;
+	}
+	
+	public JTextControllerOpen(File file) throws FileNotFoundException{
+		FileInputStream stream = null;
+        String str = "";
+        try {
+        	fileOpen = file;
+        	stream = new FileInputStream(fileOpen);
+            int content;
+            while ((content = stream.read()) != -1) {
+                str += (char) content;
+                
+            }
+        } catch (IOException e1) {
         	System.err.println(e1 + "\n");
         }
         this.string = str;
@@ -62,7 +77,7 @@ public class JTextControllerOpen {
 		}
 		
 		return file;
-		}
+	}
 	
 	public static String returnString() {
 		return string;

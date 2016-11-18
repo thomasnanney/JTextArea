@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
@@ -54,7 +55,12 @@ public class JTextFindHandler implements ActionListener{
 	    			match = match.toLowerCase();
 	    			str = str.toLowerCase();
 	    		}
-			    if(!str.contains(match) || match.equals("")){return;}
+			    if(!str.contains(match) || match.equals("")){
+			    	String message = "Word: " + match + " not found.";
+		            String title = "Error";
+		            JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
+			    	return;
+			    }
 			    switch(action){
 			    	case 0:
 			    		p0 = str.indexOf(match);

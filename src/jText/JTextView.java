@@ -5,7 +5,6 @@ import java.awt.Container;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.MouseListener;
-
 import javax.swing.AbstractButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -27,11 +26,8 @@ public class JTextView extends JFrame {
 	private JMenu file;
 	private JMenu edit;
 	private JTextArea area;
+	private JMenu openRecentMenu;
 	protected UndoManager undoManager = new UndoManager();
-	
-	public JTextView(){
-		
-	}
 	
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
@@ -76,7 +72,32 @@ public class JTextView extends JFrame {
 		/**
 		 * code to add open recent
 		 */
-		model.setFile(file);
+		
+		openRecentMenu = new JMenu("Open Recent");
+		JTextRecent recent = new JTextRecent(model);
+		
+		JMenuItem recent1 = new JMenuItem("1");
+		openRecentMenu.add(recent1);
+		recent1.setVisible(false);
+		JMenuItem recent2 = new JMenuItem("2");
+		openRecentMenu.add(recent2);
+		recent2.setVisible(false);
+		JMenuItem recent3 = new JMenuItem("3");
+		openRecentMenu.add(recent3);
+		recent3.setVisible(false);
+		JMenuItem recent4 = new JMenuItem("4");
+		openRecentMenu.add(recent4);
+		recent4.setVisible(false);
+		JMenuItem recent5 = new JMenuItem("5");
+		openRecentMenu.add(recent5);
+		recent5.setVisible(false);
+		file.add(openRecentMenu);
+		JMenuItem items[] = {recent1, recent2, recent3, recent4, recent5};
+		recent.setItems(items);
+		recent.initialStart();
+		
+		JTextRecentController rControl = new JTextRecentController(model, this);
+		register(rControl);
 		//end of add recent 
 		
 		/**
@@ -119,6 +140,15 @@ public class JTextView extends JFrame {
 	/**
 	 * register all the listeners
 	 */
+	public void register(JTextRecentController rControl){
+  		Component[] jTextComponents = openRecentMenu.getMenuComponents();
+		for(Component jTextComponent : jTextComponents) {
+			if ( jTextComponent instanceof AbstractButton) { 
+				AbstractButton button = (AbstractButton) jTextComponent;
+				button.addActionListener(rControl);		
+			}
+		}
+  	}
 
 	public void registerListener(JTextController controller) {
 		Component[] jTextComponents = jText.getMenuComponents();

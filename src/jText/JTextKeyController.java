@@ -19,7 +19,7 @@ public class JTextKeyController {
 		this.view = view;
 	}
 	
-	public void registerKeyListener(JTextController controller) {
+	public void registerKeyListener(final JTextController controller) {
 		area = view.getArea();
 		area.addKeyListener(new java.awt.event.KeyAdapter() {
 	        public void keyPressed(java.awt.event.KeyEvent event) {
@@ -53,6 +53,10 @@ public class JTextKeyController {
 	            }
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_Y){
 	            	ActionEvent e = new ActionEvent(controller, 0, "Redo");
+	            	controller.actionPerformed(e);
+	            }
+	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_O){
+	            	ActionEvent e = new ActionEvent(controller, 0, "Open");
 	            	controller.actionPerformed(e);
 	            }
 	        }

@@ -67,7 +67,7 @@ public class JTextController implements ActionListener{
 			
 			String n = "";
 			view.setArea(n);
-			model.setName("");
+			model.eraseName();
 			
 			
 		} else if (command.equals("Save As")) {

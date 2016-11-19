@@ -4,16 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+/**
+ * This class will open a recentFile from 
+ * 	the Open Recent JMenu
+ * 
+ * @author Jose Bocanegra
+ */
 public class JTextRecentController implements ActionListener{
 	
 	private JTextModel model;
 	private JTextView view;
 	private JTextControllerOpen open;
 	
-	public JTextRecentController(JTextModel model){
+	public JTextRecentController(JTextModel model, JTextView view){
 		this.model = model;
-	}
-	public JTextRecentController(JTextView view){
 		this.view = view;
 	}
 	
@@ -23,11 +27,8 @@ public class JTextRecentController implements ActionListener{
 			open = new JTextControllerOpen(file);
 			String str = open.returnString();
 			model.setName(open.getName());
-			//view.setArea(str);
+			view.setArea(str);
 		} catch (FileNotFoundException e1) {
-			if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
-				return;
-			}
 			System.err.println(e1 + "\n");
 		}
 	}

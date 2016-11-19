@@ -3,11 +3,14 @@ package jText;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.undo.*;
 
@@ -30,7 +33,12 @@ public class JTextController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		if (command.equals("Exit")) {
-			System.exit(0);
+			int confirm = JOptionPane.showOptionDialog(null, 
+					"Are You Sure to Close Application?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, 
+		             JOptionPane.QUESTION_MESSAGE, null, null, null);
+			if (confirm == JOptionPane.YES_OPTION) {
+				System.exit(0);
+			}
 		} else if (command.equals("Save")){
 			if(model.getName().equals("")){ //Same as saveAs
 				try {

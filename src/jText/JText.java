@@ -3,7 +3,9 @@
  */
 package jText;
 
-import javax.swing.JFrame;
+import java.awt.event.*;
+
+import javax.swing.*;
 import javax.swing.text.Highlighter;
 
 /**
@@ -24,7 +26,21 @@ public class JText {
 		keyController.registerKeyListener(controller);
 		view.registerListener(controller);
 		
-		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		WindowListener exitListener = new WindowAdapter() {
+
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		        int confirm = JOptionPane.showOptionDialog(
+		             null, "Are You Sure to Close Application?", 
+		             "Exit Confirmation", JOptionPane.YES_NO_OPTION, 
+		             JOptionPane.QUESTION_MESSAGE, null, null, null);
+		        if (confirm == JOptionPane.YES_OPTION) {
+		        	System.exit(0);
+		        }
+		    }
+		};
+		view.addWindowListener(exitListener);	
+		
 		view.setSize(600, 500);
 		view.setVisible(true);	
 		int i = 0;
@@ -50,7 +66,7 @@ public class JText {
 			}
 			
 		}
-			
+		
 	}
 
 }

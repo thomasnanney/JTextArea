@@ -214,7 +214,6 @@ public class JTextView extends JFrame {
 	}
 
 	public String getSelectedText() {
-		//area.cut();
 		String str = area.getSelectedText();
 		return str;
 	}

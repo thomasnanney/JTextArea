@@ -103,7 +103,7 @@ public class JTextController implements ActionListener{
 			view.paste();
 		} else if (command.equals("Find")) {
 			JTextFind findWindow = new JTextFind(view);
-			findWindow.setSize(350,160);
+			findWindow.setBounds(600, 100, 350, 160);
 			findWindow.setVisible(true);
 		} else if (command.equals("Select All")) {
 			view.selectAll();
@@ -111,7 +111,7 @@ public class JTextController implements ActionListener{
 			//TODO Find Next
 		} else if (command.equals("Replace")) {
 			JTextReplace replaceWindow = new JTextReplace(view);
-			replaceWindow.setSize(350,210);
+			replaceWindow.setBounds(600, 100, 350, 210);
 			replaceWindow.setVisible(true);
 		} else if (command.equals("Go To...")) {
 			//TODO Go To

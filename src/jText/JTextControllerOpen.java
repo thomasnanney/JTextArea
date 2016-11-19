@@ -39,6 +39,7 @@ public class JTextControllerOpen {
         	if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
         		throw new FileNotFoundException("User selected cancel");
     		}
+        	System.err.println(e1 + "\n");
         }
         this.string = str;
 	}

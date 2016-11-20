@@ -32,11 +32,11 @@ public class JText {
 		    	int confirm = JOptionPane.showOptionDialog(null, 
 						"Are You Sure to Close Application?", "Exit Confirmation", JOptionPane.YES_NO_OPTION, 
 			             JOptionPane.QUESTION_MESSAGE, null, null, null);
-				if (confirm == JOptionPane.YES_OPTION) {
-					System.exit(0);
-				}
+		    	if(confirm == JOptionPane.YES_OPTION)
+		    		System.exit(0);
 		    }
 		};
+		view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		view.addWindowListener(exitListener);	
 		
 		view.setSize(600, 500);

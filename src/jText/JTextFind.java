@@ -1,5 +1,6 @@
 package jText;
 import java.awt.*;
+
 import javax.swing.*;
 
 /**
@@ -9,6 +10,7 @@ import javax.swing.*;
  * 
  * @author Jose Bocanegra
  */
+@SuppressWarnings("serial")
 public class JTextFind extends JFrame{
 	
 	

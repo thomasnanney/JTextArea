@@ -11,6 +11,7 @@ import javax.swing.*;
  * 
  * @author Jose Bocanegra
  */
+@SuppressWarnings("serial")
 public class JTextReplace extends JFrame{
 
 	public JTextReplace(JTextView view){

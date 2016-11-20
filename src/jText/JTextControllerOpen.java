@@ -1,10 +1,8 @@
 package jText;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
@@ -21,8 +19,8 @@ import javax.swing.JOptionPane;
 
 public class JTextControllerOpen {
 	
-	public static String string;
-	public File fileOpen;
+	private String string;
+	private File fileOpen;
 	
 	public JTextControllerOpen() throws FileNotFoundException{
 		FileInputStream stream = null;
@@ -41,7 +39,7 @@ public class JTextControllerOpen {
     		}
         	System.err.println(e1 + "\n");
         }
-        this.string = str;
+        string = str;
 	}
 	
 	public JTextControllerOpen(File file) throws FileNotFoundException{
@@ -92,7 +90,7 @@ public class JTextControllerOpen {
 		return file;
 	}
 	
-	public static String returnString() {
+	public String returnString() {
 		return string;
 	}
 	

@@ -20,6 +20,7 @@ import javax.swing.undo.*;
  * JMenu objects jText and file
  */
 
+@SuppressWarnings("serial")
 public class JTextView extends JFrame {
 	
 	private JMenu jText;
@@ -128,6 +129,7 @@ public class JTextView extends JFrame {
 		/**
 		 * code to use undo and redo
 		 */
+		
 		area.getDocument().addUndoableEditListener(
 				new UndoableEditListener(){
 					public void undoableEditHappened(UndoableEditEvent e){
@@ -135,6 +137,12 @@ public class JTextView extends JFrame {
 					}
 				}
 		);
+		
+		/**
+		 * Code to delete highlights when key is typed
+		 */
+		JTextHighlightController highlight = new JTextHighlightController(area);
+		area.addKeyListener(highlight);
 	}
 	
 	/**

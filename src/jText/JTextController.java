@@ -2,16 +2,11 @@ package jText;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.undo.*;
 
 public class JTextController implements ActionListener{
@@ -20,8 +15,9 @@ public class JTextController implements ActionListener{
 	private JTextControllerOpen open;
 	private JTextControllerSaveAs saveAs;
 	private JTextModel model;
+	@SuppressWarnings("unused")
 	private JTextControllerSave save;
-	public UndoManager undoManager;
+	private UndoManager undoManager;
 	
 	public JTextController(JTextModel model,JTextView view) {
 		this.view = view;

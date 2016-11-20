@@ -35,18 +35,6 @@ public class JTextKeyController {
 	                ActionEvent e = new ActionEvent(controller, 0, "Replace");
 	                controller.actionPerformed(e);
 	            }
-	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_X){
-	            	ActionEvent e = new ActionEvent(controller, 0, "Cut");
-	            	controller.actionPerformed(e);
-	            }
-	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_C){
-	            	ActionEvent e = new ActionEvent(controller, 0, "Copy");
-	            	controller.actionPerformed(e);
-	            }
-	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_V){
-	            	ActionEvent e = new ActionEvent(controller, 0, "Paste");
-	            	controller.actionPerformed(e);
-	            }
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_Z){
 	            	ActionEvent e = new ActionEvent(controller, 0, "Undo		CTRL+Z");
 	            	controller.actionPerformed(e);

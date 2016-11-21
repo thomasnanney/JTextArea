@@ -69,6 +69,31 @@ public class JTextController implements ActionListener{
 
 		} else if (command.equals("New")) {
 			
+			String message = "Do you want to save the file?";
+            String title = "Warning";
+            int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+            if(reply == JOptionPane.YES_OPTION){
+            	if(model.getName().equals("")){ //Same as saveAs
+    				try {
+    					saveAs = new JTextControllerSaveAs();
+    					String str = view.getText();
+    					saveAs.saveText(str);
+    					model.setName(saveAs.getName());
+    				} catch (IOException e1) {
+    					if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
+    						String n = "";
+    						view.setArea(n);
+    						model.eraseName();
+    						return;
+    					}
+    					System.err.println(e1 + "\n");
+    				}
+    			} else{ //Use current file name
+    				File file = new File(model.getName());
+    				String str = view.getText();
+    				save = new JTextControllerSave(file, str);
+    			}
+            }
 			String n = "";
 			view.setArea(n);
 			model.eraseName();

@@ -36,7 +36,7 @@ public class JTextKeyController {
 	                controller.actionPerformed(e);
 	            }
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_Z){
-	            	ActionEvent e = new ActionEvent(controller, 0, "Undo		CTRL+Z");
+	            	ActionEvent e = new ActionEvent(controller, 0, "Undo");
 	            	controller.actionPerformed(e);
 	            }
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_Y){
@@ -45,6 +45,10 @@ public class JTextKeyController {
 	            }
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_O){
 	            	ActionEvent e = new ActionEvent(controller, 0, "Open");
+	            	controller.actionPerformed(e);
+	            }
+	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_N){
+	            	ActionEvent e = new ActionEvent(controller, 0, "New");
 	            	controller.actionPerformed(e);
 	            }
 	        }

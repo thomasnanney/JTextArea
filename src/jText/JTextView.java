@@ -105,7 +105,7 @@ public class JTextView extends JFrame {
 		 * Add Edit menu items to edit menu
 		 */
 		
-		JMenuItem undoButton = new JMenuItem("Undo		CTRL+Z");
+		JMenuItem undoButton = new JMenuItem("Undo   CTRL+Z");
 		edit.add(undoButton);
 		JMenuItem redoButton = new JMenuItem("Redo");
 		edit.add(redoButton);
@@ -123,8 +123,6 @@ public class JTextView extends JFrame {
 		edit.add(replaceButton);
 		JMenuItem selectAllButton = new JMenuItem("Select All");
 		edit.add(selectAllButton);
-		JMenuItem gotoButton = new JMenuItem("Go To...");
-		edit.add(gotoButton);
 		
 		/**
 		 * code to use undo and redo

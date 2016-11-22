@@ -40,13 +40,12 @@ public class JTextController implements ActionListener{
 					String str = view.getText();
 					saveAs.saveText(str);
 					model.setName(saveAs.getName());
+					view.setTitle("JText: A simple text editor");
 				} catch (IOException e1) {
 					if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 						return;
 					}
 					System.err.println(e1 + "\n");
-				} finally{
-					view.setTitle("JText: A simple text editor");
 				}
 			} else{ //Use current file name
 				File file = new File(model.getName());
@@ -64,13 +63,12 @@ public class JTextController implements ActionListener{
 				String str = open.returnString();
 				model.setName(open.getName());
 				view.setArea(str);
+				view.setTitle("JText: A simple text editor");
 			} catch (FileNotFoundException e1) {
 				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 					return;
 				}
 				System.err.println(e1 + "\n");
-			} finally{
-				view.setTitle("JText: A simple text editor");
 			}
 		} else if (command.equals("New")) {
 			if(view.titleChange()){
@@ -83,22 +81,17 @@ public class JTextController implements ActionListener{
 			view.setTitle("JText: A simple text editor");
 			
 		} else if (command.equals("Save As")) {
-			if(view.titleChange()){
-				checkSave = new JTextCheckSave(view, model);
-				checkSave.promptSave();
-			}
 			try {
 				saveAs = new JTextControllerSaveAs();
 				String str = view.getText();
 				saveAs.saveText(str);
 				model.setName(saveAs.getName());
+				view.setTitle("JText: A simple text editor");
 			} catch (IOException e1) {
 				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 					return;
 				}
 				System.err.println(e1 + "\n");
-			} finally{
-				view.setTitle("JText: A simple text editor");
 			}
 			
 		} else if (command.equals("Undo")) {

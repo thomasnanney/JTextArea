@@ -23,6 +23,8 @@ public class JTextController implements ActionListener{
 		this.model = model;
 		this.undoManager = view.getUndoManager();
 	}
+	
+	public JTextController(){}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -102,7 +104,9 @@ public class JTextController implements ActionListener{
 					return;
 				}
 			}
-			view.setTitle(view.getTitle() + "*");
+			if(!view.titleChange()){
+				view.setTitle(view.getTitle() + "*");
+			}
 		} else if (command.equals("Redo")) {
 			try {
 				undoManager.redo();
@@ -111,15 +115,21 @@ public class JTextController implements ActionListener{
 					return;
 				}
 			}
-			view.setTitle(view.getTitle() + "*");
+			if(!view.titleChange()){
+				view.setTitle(view.getTitle() + "*");
+			}
 		} else if (command.equals("Cut")) {
 			view.cut();
-			view.setTitle("JText: A simple text editor *");
+			if(!view.titleChange()){
+				view.setTitle(view.getTitle() + "*");
+			}
 		} else if (command.equals("Copy")) {
 			view.copy();
 		} else if (command.equals("Paste")) {
 			view.paste();
-			view.setTitle(view.getTitle() + "*");
+			if(!view.titleChange()){
+				view.setTitle(view.getTitle() + "*");
+			}
 		} else if (command.equals("Find")) {
 			JTextFind findWindow = new JTextFind(view);
 			findWindow.setBounds(250, 120, 350, 160);
@@ -132,8 +142,6 @@ public class JTextController implements ActionListener{
 			JTextReplace replaceWindow = new JTextReplace(view);
 			replaceWindow.setBounds(1550, 120, 350, 210);
 			replaceWindow.setVisible(true);
-		} else if (command.equals("Go To...")) {
-			//TODO Go To
 		}
 	}
 }

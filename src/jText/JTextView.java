@@ -1,10 +1,10 @@
 package jText;
 
 import java.awt.*;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
+
 import javax.swing.*;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
+import javax.swing.event.*;
 import javax.swing.undo.*;
 
 /**
@@ -20,6 +20,7 @@ public class JTextView extends JFrame {
 	private JTextArea area;
 	private JMenu openRecentMenu;
 	protected UndoManager undoManager = new UndoManager();
+	private JPopupMenu menu = new JPopupMenu("Popup");
 	
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
@@ -42,6 +43,11 @@ public class JTextView extends JFrame {
 		area = new JTextArea(1, 1);
 		//area.setBounds(500, 500, 500, 500);
 		area.setFont(new Font("System", Font.PLAIN, 24));
+		
+		/**
+		 * JPopUpMenu on Right-Click
+		 */
+		area.addMouseListener(new RightClickListener());
 
 		JScrollPane textScroller = new JScrollPane(area);
 		Container contentPane = super.getContentPane();
@@ -99,7 +105,8 @@ public class JTextView extends JFrame {
 		//end of add recent 
 		
 		/**
-		 * Add Edit menu items to edit menu
+		 * Add Edit menu items to edit menu and some of the
+		 * 	same to popUpMenu (On right-click)
 		 */
 		
 		JMenuItem undoButton = new JMenuItem("Undo   CTRL+Z");
@@ -108,10 +115,13 @@ public class JTextView extends JFrame {
 		edit.add(redoButton);
 		JMenuItem cutButton = new JMenuItem("Cut");
 		edit.add(cutButton);
+		menu.add(cutButton);
 		JMenuItem copyButton = new JMenuItem("Copy");
 		edit.add(copyButton);
+		menu.add(copyButton);
 		JMenuItem pasteButton = new JMenuItem("Paste");
 		edit.add(pasteButton);
+		menu.add(pasteButton);
 		JMenuItem findButton = new JMenuItem("Find");
 		edit.add(findButton);
 		JMenuItem findnextButton = new JMenuItem("Find Next");
@@ -152,6 +162,23 @@ public class JTextView extends JFrame {
 			}
 		}
   	}
+	
+	class RightClickListener extends MouseAdapter {
+	      public void mousePressed(MouseEvent ev) {
+	        if (ev.isPopupTrigger()) {
+	          menu.show(ev.getComponent(), ev.getX(), ev.getY());
+	        }
+	      }
+
+	      public void mouseReleased(MouseEvent ev) {
+	        if (ev.isPopupTrigger()) {
+	          menu.show(ev.getComponent(), ev.getX(), ev.getY());
+	        }
+	      }
+
+	      public void mouseClicked(MouseEvent ev) {
+	      }
+	    }
 
 	public void registerListener(JTextController controller) {
 		Component[] jTextComponents = jText.getMenuComponents();
@@ -174,6 +201,14 @@ public class JTextView extends JFrame {
 		for(Component editComponent : editComponents) {
 			if ( editComponent instanceof AbstractButton) { 
 				AbstractButton button = (AbstractButton) editComponent;
+				button.addActionListener(controller);
+			}
+		}
+		
+		Component[] popupComponents = menu.getComponents();
+		for(Component popupComponent : popupComponents) {
+			if ( popupComponent instanceof AbstractButton) { 
+				AbstractButton button = (AbstractButton) popupComponent;
 				button.addActionListener(controller);
 			}
 		}

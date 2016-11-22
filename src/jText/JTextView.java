@@ -136,6 +136,7 @@ public class JTextView extends JFrame {
 		edit.add(replaceButton);
 		JMenuItem selectAllButton = new JMenuItem("Select All");
 		edit.add(selectAllButton);
+		menu.add(selectAllButton);
 		
 		/**
 		 * code to use undo and redo

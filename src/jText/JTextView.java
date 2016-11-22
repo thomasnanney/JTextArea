@@ -2,6 +2,7 @@ package jText;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.print.PrinterException;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -73,6 +74,11 @@ public class JTextView extends JFrame {
 		JMenuItem saveasButton = new JMenuItem("Save As");
 		file.add(saveasButton);
 		
+		/**
+		 * add print to file
+		 */
+		JMenuItem printButton = new JMenuItem("Print");
+		file.add(printButton);
 		/**
 		 * code to add open recent
 		 */
@@ -294,6 +300,15 @@ public class JTextView extends JFrame {
 			}
 		} else {
 			return -1;
+		}
+	}
+
+	public void print() {
+		try {
+			area.print();
+		} catch (PrinterException e) {
+			e.printStackTrace();
+			
 		}
 	}
 	

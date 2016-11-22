@@ -95,7 +95,9 @@ public class JTextController implements ActionListener{
 				}
 				System.err.println(e1 + "\n");
 			}
-			
+		
+		} else if (command.equals("Print")) {
+			view.print();
 		} else if (command.equals("Undo")) {
 			try {
 				undoManager.undo();

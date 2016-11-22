@@ -18,10 +18,12 @@ public class JTextView extends JFrame {
 	private JMenu jText;
 	private JMenu file;
 	private JMenu edit;
+	private JMenu viewMenu;
 	private JTextArea area;
 	private JMenu openRecentMenu;
 	protected UndoManager undoManager = new UndoManager();
 	private JPopupMenu menu = new JPopupMenu("Popup");
+	
 	
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
@@ -35,9 +37,11 @@ public class JTextView extends JFrame {
 		jText = new JMenu("JText");
 		file = new JMenu("File");
 		edit = new JMenu("Edit");
+		viewMenu = new JMenu("View");
 		menuBar.add(jText);
 		menuBar.add(file);
 		menuBar.add(edit);
+		menuBar.add(viewMenu);
 		/**
 		 * Add area for text
 		 */
@@ -138,6 +142,15 @@ public class JTextView extends JFrame {
 		edit.add(selectAllButton);
 		menu.add(selectAllButton);
 		
+		
+		/**
+		 * add viewMenu items
+		 */
+		JMenuItem font = new JMenuItem("Font");
+		viewMenu.add(font);
+		JMenuItem paragraph = new JMenuItem("Paragraph");
+		viewMenu.add(paragraph);
+		
 		/**
 		 * code to use undo and redo
 		 */
@@ -220,11 +233,21 @@ public class JTextView extends JFrame {
 			}
 		}
 		
+		
 		Component[] areaComponents = area.getComponents();
 		for(Component areaComponent : areaComponents) {
 			if ( areaComponent instanceof AbstractButton) { 
 				AbstractButton button = (AbstractButton) areaComponent;
 				button.addMouseListener((MouseListener) controller);
+			}
+		}
+		
+
+		Component[] viewComponents = viewMenu.getMenuComponents();
+		for(Component viewComponent : viewComponents) {
+			if ( viewComponent instanceof AbstractButton) {
+				AbstractButton button = (AbstractButton) viewComponent;
+				button.addActionListener(controller);
 			}
 		}
 	}
@@ -312,6 +335,7 @@ public class JTextView extends JFrame {
 			
 		}
 	}
+	
 	
 	
 	

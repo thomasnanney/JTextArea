@@ -37,7 +37,7 @@ public class JTextHighlightController implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if(view.titleChange() == false && (!e.isActionKey()) && (!e.isControlDown()))
-			view.setTitle("JText: A simple text editor *");
+			view.setTitle(view.getTitle() + "*");
 		if(!e.isControlDown()){
 			Highlighter highlighter = area.getHighlighter();
 			if(highlighter.getHighlights().length > 0){

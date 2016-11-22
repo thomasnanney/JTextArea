@@ -37,7 +37,6 @@ public class JText {
 		};
 		view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		view.addWindowListener(exitListener);
-		view.setSize(600, 500);
 		view.setVisible(true);
 	}
 }

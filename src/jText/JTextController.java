@@ -40,7 +40,7 @@ public class JTextController implements ActionListener{
 					String str = view.getText();
 					saveAs.saveText(str);
 					model.setName(saveAs.getName());
-					view.setTitle("JText: A simple text editor");
+					view.setTitle("JText: A simple text editor - " + model.getName());
 				} catch (IOException e1) {
 					if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 						return;
@@ -51,7 +51,7 @@ public class JTextController implements ActionListener{
 				File file = new File(model.getName());
 				String str = view.getText();
 				save = new JTextControllerSave(file, str);
-				view.setTitle("JText: A simple text editor");
+				view.setTitle("JText: A simple text editor - " + model.getName());
 			}
 		} else if (command.equals("Open")){
 			if(view.titleChange()){
@@ -63,7 +63,7 @@ public class JTextController implements ActionListener{
 				String str = open.returnString();
 				model.setName(open.getName());
 				view.setArea(str);
-				view.setTitle("JText: A simple text editor");
+				view.setTitle("JText: A simple text editor - " + model.getName());
 			} catch (FileNotFoundException e1) {
 				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 					return;
@@ -86,7 +86,7 @@ public class JTextController implements ActionListener{
 				String str = view.getText();
 				saveAs.saveText(str);
 				model.setName(saveAs.getName());
-				view.setTitle("JText: A simple text editor");
+				view.setTitle("JText: A simple text editor - " + model.getName());
 			} catch (IOException e1) {
 				if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 					return;
@@ -102,7 +102,7 @@ public class JTextController implements ActionListener{
 					return;
 				}
 			}
-			view.setTitle("JText: A simple text editor *");
+			view.setTitle(view.getTitle() + "*");
 		} else if (command.equals("Redo")) {
 			try {
 				undoManager.redo();
@@ -111,7 +111,7 @@ public class JTextController implements ActionListener{
 					return;
 				}
 			}
-			view.setTitle("JText: A simple text editor *");
+			view.setTitle(view.getTitle() + "*");
 		} else if (command.equals("Cut")) {
 			view.cut();
 			view.setTitle("JText: A simple text editor *");
@@ -119,10 +119,10 @@ public class JTextController implements ActionListener{
 			view.copy();
 		} else if (command.equals("Paste")) {
 			view.paste();
-			view.setTitle("JText: A simple text editor *");
+			view.setTitle(view.getTitle() + "*");
 		} else if (command.equals("Find")) {
 			JTextFind findWindow = new JTextFind(view);
-			findWindow.setBounds(600, 100, 350, 160);
+			findWindow.setBounds(250, 120, 350, 160);
 			findWindow.setVisible(true);
 		} else if (command.equals("Select All")) {
 			view.selectAll();
@@ -130,7 +130,7 @@ public class JTextController implements ActionListener{
 			//TODO Find Next
 		} else if (command.equals("Replace")) {
 			JTextReplace replaceWindow = new JTextReplace(view);
-			replaceWindow.setBounds(600, 100, 350, 210);
+			replaceWindow.setBounds(1550, 120, 350, 210);
 			replaceWindow.setVisible(true);
 		} else if (command.equals("Go To...")) {
 			//TODO Go To

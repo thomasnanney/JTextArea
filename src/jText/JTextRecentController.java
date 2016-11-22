@@ -35,7 +35,7 @@ public class JTextRecentController implements ActionListener{
 		} catch (FileNotFoundException e1) {
 			System.err.println(e1 + "\n");
 		} finally{
-			view.setTitle("JText: A simple text editor");
+			view.setTitle("JText: A simple text editor - " + model.getName());
 		}
 	}
 }

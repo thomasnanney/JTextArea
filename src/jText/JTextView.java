@@ -1,11 +1,7 @@
 package jText;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Component;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.MouseListener;
-import javax.swing.AbstractButton;
 import javax.swing.*;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
@@ -27,6 +23,11 @@ public class JTextView extends JFrame {
 	
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
+		
+		super.setSize(900, 800);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		super.setLocation(dim.width/2-super.getSize().width/2 - 200, dim.height/2-super.getSize().height/2 - 200);
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		jText = new JMenu("JText");
@@ -38,7 +39,8 @@ public class JTextView extends JFrame {
 		/**
 		 * Add area for text
 		 */
-		area = new JTextArea(1,1);
+		area = new JTextArea(1, 1);
+		//area.setBounds(500, 500, 500, 500);
 		area.setFont(new Font("System", Font.PLAIN, 24));
 
 		JScrollPane textScroller = new JScrollPane(area);
@@ -211,7 +213,7 @@ public class JTextView extends JFrame {
 	
 	public boolean titleChange() { //Returns true if title has changed from default
 		String s = super.getTitle();
-		if(!s.equals("JText: A simple text editor")){
+		if(s.endsWith("*")){
 			return true;
 		}
 		return false;

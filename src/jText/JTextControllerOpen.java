@@ -1,12 +1,7 @@
 package jText;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import java.io.*;
+import javax.swing.*;
  
 
 /**
@@ -51,8 +46,8 @@ public class JTextControllerOpen {
             int content;
             while ((content = stream.read()) != -1) {
                 str += (char) content;
-                
             }
+            stream.close();
         } catch (IOException e1) {
         	System.err.println(e1 + "\n");
         }

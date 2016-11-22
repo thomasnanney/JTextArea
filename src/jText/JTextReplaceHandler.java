@@ -37,5 +37,6 @@ public class JTextReplaceHandler implements ActionListener{
 		String str = view.getText();
 		str = str.replaceAll("\\b" + oldWord + "\\b", newWord);
 		area.setText(str);
+		view.setTitle("JText: A simple text editor *");
 	}
 }

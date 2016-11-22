@@ -139,7 +139,7 @@ public class JTextView extends JFrame {
 		/**
 		 * Code to delete highlights when key is typed
 		 */
-		JTextHighlightController highlight = new JTextHighlightController(area);
+		JTextHighlightController highlight = new JTextHighlightController(this);
 		area.addKeyListener(highlight);
 	}
 	
@@ -211,8 +211,19 @@ public class JTextView extends JFrame {
 
 	public String getText(){
 		String str = area.getText();
-		//System.out.println(str);
 		return str;
+	}
+	
+	public boolean titleChange() { //Returns true if title has changed from default
+		String s = super.getTitle();
+		if(!s.equals("JText: A simple text editor")){
+			return true;
+		}
+		return false;
+	}
+	
+	public void setTitle(String s){
+		super.setTitle(s);
 	}
 	
 	public UndoManager getUndoManager(){

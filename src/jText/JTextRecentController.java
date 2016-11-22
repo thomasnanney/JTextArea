@@ -22,6 +22,10 @@ public class JTextRecentController implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		if(view.titleChange()){
+			JTextCheckSave checkSave = new JTextCheckSave(view, model);
+			checkSave.promptSave();
+		}
 		try {
 			File file = new File(e.getActionCommand());
 			open = new JTextControllerOpen(file);
@@ -30,6 +34,8 @@ public class JTextRecentController implements ActionListener{
 			view.setArea(str);
 		} catch (FileNotFoundException e1) {
 			System.err.println(e1 + "\n");
+		} finally{
+			view.setTitle("JText: A simple text editor");
 		}
 	}
 }

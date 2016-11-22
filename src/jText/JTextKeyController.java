@@ -53,7 +53,7 @@ public class JTextKeyController {
 	            }
 	            /**
 	             * The following, Cut and Paste, are already defaulted in. We are
-	             * 	just making sure out JFrame is updating it's title correctly.
+	             * 	just making sure our JFrame is updating it's title correctly.
 	             */
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_X){
 	            	if(!view.titleChange()){
@@ -64,6 +64,10 @@ public class JTextKeyController {
 	            	if(!view.titleChange()){
 	    				view.setTitle(view.getTitle() + "*");
 	    			}
+	            }
+	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_P){
+	            	ActionEvent e = new ActionEvent(controller, 0, "Print");
+	            	controller.actionPerformed(e);
 	            }
 	        }
 	    });

@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+import javax.swing.JOptionPane;
+
 /**
  * This class will open a recentFile from 
  * 	the Open Recent JMenu
@@ -28,6 +30,13 @@ public class JTextRecentController implements ActionListener{
 		}
 		try {
 			File file = new File(e.getActionCommand());
+			if(!file.exists()){
+				String message = "File • " + file.getName() + " • does not exist in \n" + file.getParent() + ":\n" + "Removed from recent files.";
+				String title = "Warning";
+				JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
+				JTextRecent recent = new JTextRecent();
+				return;
+			}
 			open = new JTextControllerOpen(file);
 			String str = open.returnString();
 			model.setName(open.getName());

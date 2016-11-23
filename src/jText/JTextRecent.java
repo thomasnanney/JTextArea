@@ -22,6 +22,8 @@ public class JTextRecent {
 		this.model = model;
 	}
 	
+	public JTextRecent(){}
+	
 	public void setItems(JMenuItem items[]){
 		model.giveRecent(this);
 		this.items = items;
@@ -72,7 +74,7 @@ public class JTextRecent {
 			if(list.size() <= i){
   				break;
   			}
-			JMenuItem item = items[i];
+			JMenuItem item = items[4 - i]; //Most recent files will be on top
 			String temp = list.get(i);
 			item.setText(temp);
 			item.setVisible(true);

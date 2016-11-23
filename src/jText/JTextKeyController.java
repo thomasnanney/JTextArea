@@ -2,7 +2,7 @@ package jText;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 /**
  * This class will register keys typed in, specifically when
@@ -13,15 +13,15 @@ import javax.swing.JTextArea;
 public class JTextKeyController {
 
 	JTextView view;
-	JTextArea area;
+	JTextPane textPane;
 	
 	public JTextKeyController(JTextView view){
 		this.view = view;
 	}
 	
 	public void registerKeyListener(final JTextController controller) {
-		area = view.getArea();
-		area.addKeyListener(new java.awt.event.KeyAdapter() {
+		textPane = view.getPane();
+		textPane.addKeyListener(new java.awt.event.KeyAdapter() {
 	        public void keyPressed(java.awt.event.KeyEvent event) {
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_S) {
 	                ActionEvent e = new ActionEvent(controller, 0, "Save");

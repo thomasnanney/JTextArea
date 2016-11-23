@@ -2,10 +2,7 @@ package jText;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -23,14 +20,14 @@ public class JTextFindHandler implements ActionListener{
 	
 	private JTextField field;
 	private JTextView view;
-	private JTextArea area;
+	private JTextPane textPane;
 	private int action = 0; //0 == find, 1 == find all
 	private int iCase = 1; //1 == case sensitive, -1 == ignore case
 	
 	public JTextFindHandler(JTextField field, JTextView view){
 		this.field = field;
 		this.view = view;
-		this.area = view.getArea();
+		this.textPane = view.getPane();
 	}
 	
 	public void actionPerformed(ActionEvent event) {
@@ -48,7 +45,7 @@ public class JTextFindHandler implements ActionListener{
 				int p0, p1, end;
 				String match = field.getText();
 				String str = view.getText();
-				Highlighter highlighter = area.getHighlighter();
+				Highlighter highlighter = textPane.getHighlighter();
 				highlighter.removeAllHighlights();
 			    HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.gray);
 			    if(iCase == -1){

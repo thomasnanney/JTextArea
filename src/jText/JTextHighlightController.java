@@ -2,7 +2,7 @@ package jText;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.text.Highlighter;
 
 /**
@@ -18,12 +18,12 @@ import javax.swing.text.Highlighter;
  */
 public class JTextHighlightController implements KeyListener{
 	
-	private JTextArea area;
+	private JTextPane textPane;
 	private JTextView view;
 	
 	public JTextHighlightController(JTextView view){
 		this.view = view;
-		this.area = view.getArea();
+		this.textPane = view.getPane();
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class JTextHighlightController implements KeyListener{
 		if(view.titleChange() == false && (!e.isActionKey()) && (!e.isControlDown()))
 			view.setTitle(view.getTitle() + "*");
 		if(!e.isControlDown()){
-			Highlighter highlighter = area.getHighlighter();
+			Highlighter highlighter = textPane.getHighlighter();
 			if(highlighter.getHighlights().length > 0){
 				highlighter.removeAllHighlights();
 			}

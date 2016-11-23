@@ -3,9 +3,9 @@ package jText;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.print.PrinterException;
-
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.text.*;
 import javax.swing.undo.*;
 
 /**
@@ -19,10 +19,12 @@ public class JTextView extends JFrame {
 	private JMenu file;
 	private JMenu edit;
 	private JMenu viewMenu;
-	private JTextArea area;
 	private JMenu openRecentMenu;
 	protected UndoManager undoManager = new UndoManager();
 	private JPopupMenu menu = new JPopupMenu("Popup");
+	private JTextPane textPane;
+    private StyledDocument styledDocument;
+	
 	
 	
 	public JTextView(JTextModel model) {
@@ -45,15 +47,19 @@ public class JTextView extends JFrame {
 		/**
 		 * Add area for text
 		 */
-		area = new JTextArea(1, 1);
-		area.setFont(new Font("System", Font.PLAIN, 24));
+		this.styledDocument = new DefaultStyledDocument();
+        //this.styledDocument.insertString(0, "test", null);
+        this.setLocationByPlatform(true);
+        textPane = new JTextPane(styledDocument);
+        //textPane.addCaretListener(new SelectedText());
+        textPane.setPreferredSize(new Dimension(250, 125));
 		
 		/**
 		 * JPopUpMenu on Right-Click
 		 */
-		area.addMouseListener(new RightClickListener());
+        textPane.addMouseListener(new RightClickListener());
 
-		JScrollPane textScroller = new JScrollPane(area);
+		JScrollPane textScroller = new JScrollPane(textPane);
 		Container contentPane = super.getContentPane();
 		contentPane.add(textScroller, BorderLayout.CENTER);
 		
@@ -154,7 +160,7 @@ public class JTextView extends JFrame {
 		 * code to use undo and redo
 		 */
 		
-		area.getDocument().addUndoableEditListener(
+		textPane.getDocument().addUndoableEditListener(
 				new UndoableEditListener(){
 					public void undoableEditHappened(UndoableEditEvent e){
 						undoManager.addEdit(e.getEdit());
@@ -166,7 +172,7 @@ public class JTextView extends JFrame {
 		 * Code to delete highlights when key is typed
 		 */
 		JTextHighlightController highlight = new JTextHighlightController(this);
-		area.addKeyListener(highlight);
+		textPane.addKeyListener(highlight);
 	}
 	
 	/**
@@ -233,7 +239,7 @@ public class JTextView extends JFrame {
 		}
 		
 		
-		Component[] areaComponents = area.getComponents();
+		Component[] areaComponents = textPane.getComponents();
 		for(Component areaComponent : areaComponents) {
 			if ( areaComponent instanceof AbstractButton) { 
 				AbstractButton button = (AbstractButton) areaComponent;
@@ -260,18 +266,16 @@ public class JTextView extends JFrame {
 	 */
 	
 	public void setArea(String str){
-		String current = area.getText();
-		int size = current.length();
-		area.replaceRange(str,0,size);
-		area.update(area.getGraphics());
+		textPane.setText(str);
+		textPane.update(textPane.getGraphics());
 	}
 	
-	public JTextArea getArea(){
-		return area;
+	public JTextPane getPane(){
+		return textPane;
 	}
 
 	public String getText(){
-		String str = area.getText();
+		String str = textPane.getText();
 		return str;
 	}
 	
@@ -292,29 +296,29 @@ public class JTextView extends JFrame {
 	}
 
 	public String getSelectedText() {
-		String str = area.getSelectedText();
+		String str = textPane.getSelectedText();
 		return str;
 	}
 	
 	public void cut() {
-		area.cut();
+		textPane.cut();
 	}
 	
 	public void copy() {
-		area.copy();
+		textPane.copy();
 	}
 	
 	public void paste() {
-		area.paste();
+		textPane.paste();
 	}
 	
 	public void selectAll(){
-		area.selectAll();
+		textPane.selectAll();
 	}
 
 	public int length() {
-		if(area.isEnabled()){
-			String str = area.getText();
+		if(textPane.isEnabled()){
+			String str = textPane.getText();
 			if(str != null){
 				int i =  str.length();
 				return i;
@@ -328,7 +332,7 @@ public class JTextView extends JFrame {
 
 	public void print() {
 		try {
-			area.print();
+			textPane.print();
 		} catch (PrinterException e) {
 			e.printStackTrace();
 			

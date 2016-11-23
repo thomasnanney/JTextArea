@@ -2,8 +2,7 @@ package jText;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  * This class will simply replace all instances
@@ -17,13 +16,13 @@ public class JTextReplaceHandler implements ActionListener{
 	private JTextField fieldWord;
 	private JTextField fieldNewWord;
 	private JTextView view;
-	private JTextArea area;
+	private JTextPane textPane;
 	
 	public JTextReplaceHandler(JTextField word, JTextField newWord, JTextView view){
 		this.fieldWord = word;
 		this.fieldNewWord = newWord;
 		this.view = view;
-		this.area = view.getArea();
+		this.textPane = view.getPane();
 	}
 	
 	/**
@@ -36,7 +35,7 @@ public class JTextReplaceHandler implements ActionListener{
 		String newWord = fieldNewWord.getText();
 		String str = view.getText();
 		str = str.replaceAll("\\b" + oldWord + "\\b", newWord);
-		area.setText(str);
+		textPane.setText(str);
 		if(!view.titleChange()){
 			view.setTitle(view.getTitle() + "*");
 		}

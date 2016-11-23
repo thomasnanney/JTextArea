@@ -110,7 +110,7 @@ public class JTextView extends JFrame {
 		recent.setItems(items);
 		recent.initialStart();
 		
-		JTextRecentController rControl = new JTextRecentController(model, this);
+		JTextRecentController rControl = new JTextRecentController(model, this, recent);
 		register(rControl);
 		//end of add recent 
 		

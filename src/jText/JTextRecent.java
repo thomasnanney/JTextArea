@@ -16,10 +16,11 @@ public class JTextRecent {
 	
 	private JTextModel model;
 	private JMenuItem items[];
-	private ArrayList<String> list = new ArrayList<String>();
+	private ArrayList<String> list;
 	
 	public JTextRecent(JTextModel model){
 		this.model = model;
+		list = model.getList();
 	}
 	
 	public JTextRecent(){}
@@ -31,7 +32,7 @@ public class JTextRecent {
 	
 	public void setName(String name){
 		if(list.contains(name)){
-			remove(name);
+			dRemove(name);
 		}
 		else{
 			list.add(name);
@@ -70,8 +71,11 @@ public class JTextRecent {
   				rewriteFile();
   			}
   		}
+  		for(JMenuItem item : items){
+  			item.setVisible(false);
+  		}
 		for(int i = 0; i < 5; i++) {
-			if(list.size() <= i){
+			if(i >= list.size()){
   				break;
   			}
 			JMenuItem item = items[4 - i]; //Most recent files will be on top
@@ -82,7 +86,12 @@ public class JTextRecent {
 		file.close();
 	}
 	
-	public void remove(String n){
+	/**
+	 * This class removes duplicates
+	 * 
+	 * @param n
+	 */
+	public void dRemove(String n){
   		for(int i = 0; i < list.size(); i++){
   			if(list.get(i).equals(n)){
   				list.remove(i);
@@ -91,6 +100,24 @@ public class JTextRecent {
   		list.add(n);
   		rewriteFile();
   	}
+	
+	/**
+	 * This class removes any file that
+	 * 	cannot be opened due to not existing
+	 * 
+	 * @param n
+	 */
+	public void eRemove(String n){
+		for(int i = 0; i < list.size(); i++){
+  			if(list.get(i).equals(n)){
+  				list.remove(i);
+  				JMenuItem item = items[4 - i];
+  				item.setVisible(false); //Essentially removes the item
+  			}
+  		}
+  		rewriteFile(); //update recentFiles.txt without the non existing file
+  		trackRecent(); //update the list without the non existing file
+	}
 	
 	public void rewriteFile(){
   		BufferedWriter bw = null;

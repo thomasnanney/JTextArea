@@ -31,8 +31,6 @@ public class JTextView extends JFrame {
 		super("JText: A simple text editor");
 		
 		super.setSize(900, 800);
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		super.setLocation(dim.width/2-super.getSize().width/2 - 200, dim.height/2-super.getSize().height/2 - 200);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -48,11 +46,10 @@ public class JTextView extends JFrame {
 		 * Add area for text
 		 */
 		this.styledDocument = new DefaultStyledDocument();
-        //this.styledDocument.insertString(0, "test", null);
-        this.setLocationByPlatform(true);
+		this.setLocation(400, 100);
         textPane = new JTextPane(styledDocument);
-        //textPane.addCaretListener(new SelectedText());
         textPane.setPreferredSize(new Dimension(250, 125));
+        textPane.setFont(new Font("System", Font.PLAIN, 25));
 		
 		/**
 		 * JPopUpMenu on Right-Click

@@ -22,20 +22,30 @@ public class JTextFontHandler implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Font f = area.getFont();
 		if(e.getActionCommand().equals("comboBoxChanged")){
 			JComboBox cb = (JComboBox)e.getSource();
 			String font = (String)cb.getSelectedItem();
-			switch(font){ //Font, change so it changes font with current size
+			switch(font){ //Font and Style
 				case "Bold":
-					area.setFont(new Font("System", Font.BOLD, 24));
+					area.setFont(new Font(f.getFontName(), Font.BOLD, f.getSize()));
 					break;
 				case "Italic":
-					area.setFont(new Font("System", Font.ITALIC, 24));
+					area.setFont(new Font(f.getFontName(), Font.ITALIC, f.getSize()));
+					break;
+				case "System":
+					area.setFont(new Font("System", f.getStyle(), f.getSize()));
+					break;
+				case "Serif":
+					area.setFont(new Font(Font.SERIF, f.getStyle(), f.getSize()));
+					break;
+				case "Monospaced":
+					area.setFont(new Font(Font.MONOSPACED, f.getStyle(), f.getSize()));
 					break;
 			}
 		}
-		else{ //Size, change so it changes size with current font
-			area.setFont(new Font("System", Font.PLAIN, Integer.parseInt(e.getActionCommand())));
+		else{ //Size
+			area.setFont(new Font(f.getFontName(), f.getStyle(), Integer.parseInt(e.getActionCommand())));
 		}
 	}
 }

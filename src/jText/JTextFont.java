@@ -19,7 +19,7 @@ public class JTextFont extends JFrame{
 			JLabel fontLabel = new JLabel("Font:");
 			fontLabel.setFont(new Font("System", Font.PLAIN, 24));
 			panelNorth.add(fontLabel);
-			String[] fonts = { " ", "Bold" , "Italic" };
+			String[] fonts = { " ", "System", "Serif", "Monospaced" };
 			JComboBox<String> font = new JComboBox<String>(fonts);
 			panelNorth.add(font);
 			
@@ -27,7 +27,7 @@ public class JTextFont extends JFrame{
 			JLabel styleLabel = new JLabel("Style:");
 			styleLabel.setFont(new Font("System", Font.PLAIN, 24));
 			panelCenter.add(styleLabel);
-			String[] styles = { };
+			String[] styles = { " ", "Bold", "Italic" };
 			JComboBox<String> style = new JComboBox<String>(styles);
 			panelCenter.add(style);
 			

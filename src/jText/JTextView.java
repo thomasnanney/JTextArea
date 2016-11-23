@@ -46,7 +46,6 @@ public class JTextView extends JFrame {
 		 * Add area for text
 		 */
 		area = new JTextArea(1, 1);
-		//area.setBounds(500, 500, 500, 500);
 		area.setFont(new Font("System", Font.PLAIN, 24));
 		
 		/**

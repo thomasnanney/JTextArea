@@ -1,16 +1,7 @@
 package jText;
 
-
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
+import java.awt.*;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class JTextFont extends JFrame{
@@ -24,20 +15,20 @@ public class JTextFont extends JFrame{
 			JPanel panelSouth = new JPanel();
 			add(panelSouth, BorderLayout.SOUTH);
 			
-			
-			
 			panelNorth.setLayout(new GridLayout(1, 1));
 			JLabel fontLabel = new JLabel("Font:");
 			fontLabel.setFont(new Font("System", Font.PLAIN, 24));
 			panelNorth.add(fontLabel);
-			JComboBox font = new JComboBox();
+			String[] fonts = { " ", "Bold" , "Italic" };
+			JComboBox<String> font = new JComboBox<String>(fonts);
 			panelNorth.add(font);
 			
 			panelCenter.setLayout(new GridLayout(1, 1));
 			JLabel styleLabel = new JLabel("Style:");
 			styleLabel.setFont(new Font("System", Font.PLAIN, 24));
 			panelCenter.add(styleLabel);
-			JComboBox style = new JComboBox();
+			String[] styles = { };
+			JComboBox<String> style = new JComboBox<String>(styles);
 			panelCenter.add(style);
 			
 			panelSouth.setLayout(new GridLayout(1, 1));

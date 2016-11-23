@@ -23,8 +23,6 @@ public class JTextController implements ActionListener{
 		this.model = model;
 		this.undoManager = view.getUndoManager();
 	}
-	
-	public JTextController(){}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

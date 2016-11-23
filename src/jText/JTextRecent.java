@@ -23,8 +23,6 @@ public class JTextRecent {
 		list = model.getList();
 	}
 	
-	public JTextRecent(){}
-	
 	public void setItems(JMenuItem items[]){
 		model.giveRecent(this);
 		this.items = items;

@@ -19,13 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class JTextControllerSaveAs {
 	
-	public File file;
-	
-	public JTextControllerSaveAs() {	
-		
-		
-		
-	}
+	private File file;
 	
 	/**
 	 * creates filechooser to choose file to save

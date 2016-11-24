@@ -152,9 +152,11 @@ public class JTextView extends JFrame {
 		JMenuItem bold = new JMenuItem("Bold");
 		JMenuItem italic = new JMenuItem("Italic");
 		JMenuItem underline = new JMenuItem("Underline");
+		JMenuItem defaultS = new JMenuItem("Default");
 		stylesMenu.add(bold);
 		stylesMenu.add(italic);
 		stylesMenu.add(underline);
+		stylesMenu.add(defaultS);
 		menu.add(stylesMenu);
 		
 		JTextFontSelectedHandler fontHandler = new JTextFontSelectedHandler(textPane);

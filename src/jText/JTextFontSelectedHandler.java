@@ -24,30 +24,46 @@ public class JTextFontSelectedHandler implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent evt) {
-	    int start = pane.getSelectionStart();
+		int start = pane.getSelectionStart();
 	    int end = pane.getSelectionEnd();
 	    if (start == end) { //No text selected
 	        return;
 	    }
+	    
+	    Element element = doc.getCharacterElement(start);
+	    AttributeSet as = element.getAttributes();
+	    
 	    StyleContext sc = new StyleContext();
 		Style style = sc.addStyle("", null);
 		switch(evt.getActionCommand()){
 			case "Bold":
-				StyleConstants.setBold(style, true);
+				if(StyleConstants.isBold(as))
+					sc.removeStyle("bold");
+				else{
+					style = sc.addStyle("bold", null);
+					StyleConstants.setBold(style, true);
+				}
 				break;
 			case "Italic":
-				StyleConstants.setItalic(style, true);
+				if(StyleConstants.isItalic(as))
+					sc.removeStyle("italic");
+				else{
+					style = sc.addStyle("italic", null);
+					StyleConstants.setItalic(style, true);
+				}
 				break;
 			case "Underline":
-				StyleConstants.setUnderline(style, true);
+				if(StyleConstants.isUnderline(as))
+					sc.removeStyle("underline");
+				else{
+					style = sc.addStyle("underline", null);
+					StyleConstants.setUnderline(style, true);
+				}
+				break;
+			case "Default":
+				style = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
+				break;
 		}
-		
-		try {
-			String str = pane.getText(start, end - start);
-			doc.remove(start, end - start);
-			doc.insertString(start, str, style);
-		} catch (BadLocationException e) {
-			System.err.println(e + "\n");
-		}
+		doc.setCharacterAttributes(start, end - start, style, true);
 	}      
 }

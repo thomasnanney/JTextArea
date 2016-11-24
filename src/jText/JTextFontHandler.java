@@ -3,17 +3,13 @@ package jText;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class JTextFontHandler implements ActionListener{
-
-	private JTextField field;
-	private JTextView view;
 	private JTextPane textPane;
 	
-	public JTextFontHandler(JTextField field, JTextView view){
-		this.field = field;
-		this.view = view;
+	public JTextFontHandler(JTextView view){
 		this.textPane = view.getPane();
 		
 	}
@@ -22,7 +18,7 @@ public class JTextFontHandler implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Font f = textPane.getFont();
 		if(e.getActionCommand().equals("comboBoxChanged")){
-			JComboBox cb = (JComboBox)e.getSource();
+			JComboBox<?> cb = (JComboBox<?>)e.getSource();
 			String font = (String)cb.getSelectedItem();
 			switch(font){ //Font and Style
 				case "Bold":

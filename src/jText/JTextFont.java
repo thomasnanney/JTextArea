@@ -38,12 +38,10 @@ public class JTextFont extends JFrame{
 			JTextField size = new JTextField();
 			panelSouth.add(size);
 			
-			JTextFontHandler handler = new JTextFontHandler(size, view);
+			JTextFontHandler handler = new JTextFontHandler(view);
 			font.addActionListener(handler);
 			style.addActionListener(handler);
 			size.addActionListener(handler);
-			
-			
 		}
 	
 

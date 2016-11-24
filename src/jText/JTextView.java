@@ -20,6 +20,7 @@ public class JTextView extends JFrame {
 	private JMenu edit;
 	private JMenu viewMenu;
 	private JMenu openRecentMenu;
+	private JMenu stylesMenu;
 	protected UndoManager undoManager = new UndoManager();
 	private JPopupMenu menu = new JPopupMenu("Popup");
 	private JTextPane textPane;
@@ -50,7 +51,7 @@ public class JTextView extends JFrame {
         textPane = new JTextPane(styledDocument);
         textPane.setPreferredSize(new Dimension(250, 125));
         textPane.setFont(new Font("System", Font.PLAIN, 25));
-		
+        
 		/**
 		 * JPopUpMenu on Right-Click
 		 */
@@ -74,7 +75,6 @@ public class JTextView extends JFrame {
 		file.add(newButton);
 		JMenuItem openButton = new JMenuItem("Open");
 		file.add(openButton);
-		
 		JMenuItem saveButton = new JMenuItem("Save");
 		file.add(saveButton);
 		JMenuItem saveasButton = new JMenuItem("Save As");
@@ -144,7 +144,21 @@ public class JTextView extends JFrame {
 		edit.add(selectAllButton);
 		menu.add(selectAllButton);
 		
+		/**
+		 * Add styles menu and items on popUpMenu (Right-click)
+		 */
+		stylesMenu = new JMenu("Font");
 		
+		JMenuItem bold = new JMenuItem("Bold");
+		JMenuItem italic = new JMenuItem("Italic");
+		JMenuItem underline = new JMenuItem("Underline");
+		stylesMenu.add(bold);
+		stylesMenu.add(italic);
+		stylesMenu.add(underline);
+		menu.add(stylesMenu);
+		
+		JTextFontSelectedHandler fontHandler = new JTextFontSelectedHandler(textPane);
+		registerStyles(fontHandler);
 		/**
 		 * add viewMenu items
 		 */
@@ -184,6 +198,16 @@ public class JTextView extends JFrame {
 			}
 		}
   	}
+	
+	public void registerStyles(JTextFontSelectedHandler fControl){
+		Component[] styleComponents = stylesMenu.getMenuComponents();
+		for(Component styleComponent : styleComponents) {
+			if ( styleComponent instanceof AbstractButton) { 
+				AbstractButton button = (AbstractButton) styleComponent;
+				button.addActionListener(fControl);
+			}
+		}
+	}
 	
 	class RightClickListener extends MouseAdapter {
 	      public void mousePressed(MouseEvent ev) {
@@ -243,7 +267,6 @@ public class JTextView extends JFrame {
 				button.addMouseListener((MouseListener) controller);
 			}
 		}
-		
 
 		Component[] viewComponents = viewMenu.getMenuComponents();
 		for(Component viewComponent : viewComponents) {

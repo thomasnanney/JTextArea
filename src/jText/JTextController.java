@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import javax.swing.undo.*;
 
 public class JTextController implements ActionListener{
@@ -31,8 +32,9 @@ public class JTextController implements ActionListener{
 			if(view.titleChange()){
 				JTextCheckSave checkSave = new JTextCheckSave(view, model);
 				checkSave.promptSaveExit();
+			} else{
+				System.exit(0);
 			}
-			System.exit(0);
 		} else if (command.equals("Save")){
 			if(model.getName().equals("")){ //Same as saveAs
 				try {

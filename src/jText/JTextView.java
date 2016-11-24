@@ -161,6 +161,7 @@ public class JTextView extends JFrame {
 		
 		JTextFontSelectedHandler fontHandler = new JTextFontSelectedHandler(textPane);
 		registerStyles(fontHandler);
+		
 		/**
 		 * add viewMenu items
 		 */

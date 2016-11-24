@@ -1,6 +1,7 @@
 package jText;
 
 import java.io.*;
+
 import javax.swing.*;
 
 /**
@@ -60,6 +61,9 @@ public class JTextCheckSave {
 					String str = view.getText();
 					saveAs.saveText(str);
 					model.setName(saveAs.getName());
+					message = "File successfully saved!";
+			        title = "Saved";
+					JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
 				} catch (IOException e1) {
 					if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 						return;
@@ -70,7 +74,13 @@ public class JTextCheckSave {
 				File file = new File(model.getName());
 				String str = view.getText();
 				save = new JTextControllerSave(file, str);
+				message = "File successfully saved!";
+		        title = "Saved";
+				JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
 			}
+        } else if(reply == JOptionPane.CLOSED_OPTION){
+        	return;
         }
+        System.exit(0);
 	}
 }

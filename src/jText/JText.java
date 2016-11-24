@@ -4,6 +4,7 @@
 package jText;
 
 import java.awt.event.*;
+
 import javax.swing.*;
 
 /**
@@ -31,8 +32,9 @@ public class JText {
 				if(view.titleChange()){
 					JTextCheckSave checkSave = new JTextCheckSave(view, model);
 					checkSave.promptSaveExit();
+				} else{
+					System.exit(0);
 				}
-				System.exit(0);
 		    }
 		};
 		view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

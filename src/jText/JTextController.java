@@ -148,6 +148,10 @@ public class JTextController implements ActionListener{
 			JTextFont fontWindow = new JTextFont(view);
 			fontWindow.setBounds(1550, 120, 350, 210);
 			fontWindow.setVisible(true);
+		}else if(command.equals("Paragraph")){
+			JTextParagraph paragraphWindow = new JTextParagraph(view);
+			paragraphWindow.setBounds(1550, 120, 350, 210);
+			paragraphWindow.setVisible(true);
 		}
 	}
 }

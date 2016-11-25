@@ -134,7 +134,7 @@ public class JTextController implements ActionListener{
 			}
 		} else if (command.equals("Find")) {
 			JTextFind findWindow = new JTextFind(view);
-			findWindow.setBounds(250, 120, 350, 160);
+			findWindow.setBounds(240, 120, 360, 160);
 			findWindow.setVisible(true);
 		} else if (command.equals("Select All")) {
 			view.selectAll();

@@ -2,6 +2,9 @@ package jText;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -22,7 +25,8 @@ public class JTextFindHandler implements ActionListener{
 	private JTextView view;
 	private JTextPane textPane;
 	private int action = 0; //0 == find, 1 == find all
-	private int iCase = 1; //1 == case sensitive, -1 == ignore case
+	private int sCase = 1; //1 == case sensitive, -1 == ignore case
+	private int wholeWord = 1; //1 == not whole word, -1 == whole word
 	
 	public JTextFindHandler(JTextField field, JTextView view){
 		this.field = field;
@@ -39,7 +43,10 @@ public class JTextFindHandler implements ActionListener{
 				action = 1;
 				break;
 			case "Ignore Case":
-				iCase *= -1;
+				sCase *= -1;
+				break;
+			case "Whole Word":
+				wholeWord *= -1;
 				break;
 			default:
 				int p0, p1, end;
@@ -48,18 +55,42 @@ public class JTextFindHandler implements ActionListener{
 				Highlighter highlighter = textPane.getHighlighter();
 				highlighter.removeAllHighlights();
 			    HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.gray);
-			    if(iCase == -1){
+			    if(sCase == -1){
 	    			match = match.toLowerCase();
 	    			str = str.toLowerCase();
 	    		}
 			    if(!str.contains(match) || match.equals("")){
-			    	String message = "Word: " + match + " not found.";
-		            String title = "Error";
-		            JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
-			    	return;
+			    	
 			    }
 			    switch(action){
 			    	case 0:
+			    		if(wholeWord == -1){
+			    			Pattern p = Pattern.compile("\\b" + match + "\\b");
+			    			Matcher m = p.matcher(str);
+			    			int newline = 0;
+			    			if (m.find()) {
+			    				int position = m.start();
+			    				Pattern p2 = Pattern.compile("\n");
+				    			Matcher m2 = p2.matcher(str);
+				    			while(m2.find()){
+				    				if(m2.start() < position)
+				    					newline++;
+				    				else
+				    					break;
+				    			}
+			    				try {
+			    					highlighter.addHighlight(position - newline, position + match.length() - newline, painter);
+			    				} catch (BadLocationException e1) {
+			    					System.err.println(e1 + "\n");
+			    					}
+			    			} else{
+			    				String message = "Word: " + match + " not found.";
+					            String title = "Error";
+					            JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
+						    	return;
+			    			}
+			    			break;
+			    		}
 			    		p0 = str.indexOf(match);
 			    		p1 = p0 + match.length();
 			    		try {
@@ -69,6 +100,36 @@ public class JTextFindHandler implements ActionListener{
 						}
 			    		break;
 			    	case 1:
+			    		if(wholeWord == -1){
+			    			Pattern p = Pattern.compile("\\b" + match + "\\b");
+			    			Matcher m = p.matcher(str);
+			    			int count = 0;
+			    			while(m.find()) {
+			    				count ++;
+			    				int position = m.start();
+			    				Pattern p2 = Pattern.compile("\n");
+				    			Matcher m2 = p2.matcher(str);
+				    			int newline = 0;
+				    			while(m2.find()){
+				    				if(m2.start() < position)
+				    					newline++;
+				    				else
+				    					break;
+				    			}
+				    			try {
+				    				highlighter.addHighlight(position - newline, position + match.length() - newline, painter);
+								} catch (BadLocationException e1) {
+									System.err.println(e1 + "\n");
+								}
+			    			}
+			    			if(count == 0){
+			    				String message = "Word: " + match + " not found.";
+					            String title = "Error";
+					            JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
+						    	return;
+			    			}
+			    			break;
+			    		}
 			    		end = str.lastIndexOf(match);
 					    p0 = str.indexOf(match);
 					    while(p0 < end){

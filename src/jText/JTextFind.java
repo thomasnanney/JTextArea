@@ -36,21 +36,25 @@ public class JTextFind extends JFrame{
 		panelCenter.setLayout(new GridLayout(2, 2));
 		JRadioButton rButton1 = new JRadioButton("Find");
 		JRadioButton rButton2 = new JRadioButton("Find All");
-		JCheckBox checkbox = new JCheckBox("Ignore Case");
+		JCheckBox checkbox1 = new JCheckBox("Ignore Case");
+		JCheckBox checkbox2 = new JCheckBox("Whole Word");
 		rButton1.setFont(new Font("System", Font.PLAIN, 25));
 		rButton2.setFont(new Font("System", Font.PLAIN, 25));
-		checkbox.setFont(new Font("System", Font.PLAIN, 25));
+		checkbox1.setFont(new Font("System", Font.PLAIN, 25));
+		checkbox2.setFont(new Font("System", Font.PLAIN, 25));
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(rButton1);
 		rButton1.setSelected(true);
 		buttonGroup.add(rButton2);
 		panelCenter.add(rButton1);
 		panelCenter.add(rButton2);
-		panelCenter.add(checkbox);		
+		panelCenter.add(checkbox1);
+		panelCenter.add(checkbox2);
 		JTextFindHandler handler = new JTextFindHandler(userField, view);
 		userField.addActionListener(handler);
 		rButton1.addActionListener(handler);
 		rButton2.addActionListener(handler);
-		checkbox.addActionListener(handler);
+		checkbox1.addActionListener(handler);
+		checkbox2.addActionListener(handler);
 	}
 }

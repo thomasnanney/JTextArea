@@ -138,8 +138,6 @@ public class JTextController implements ActionListener{
 			findWindow.setVisible(true);
 		} else if (command.equals("Select All")) {
 			view.selectAll();
-		} else if (command.equals("Find Next")) {
-			//TODO Find Next
 		} else if (command.equals("Replace")) {
 			JTextReplace replaceWindow = new JTextReplace(view);
 			replaceWindow.setBounds(1550, 120, 350, 210);

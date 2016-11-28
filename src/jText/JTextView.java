@@ -136,8 +136,6 @@ public class JTextView extends JFrame {
 		menu.add(pasteButton);
 		JMenuItem findButton = new JMenuItem("Find");
 		edit.add(findButton);
-		JMenuItem findnextButton = new JMenuItem("Find Next");
-		edit.add(findnextButton);
 		JMenuItem replaceButton = new JMenuItem("Replace");
 		edit.add(replaceButton);
 		JMenuItem selectAllButton = new JMenuItem("Select All");

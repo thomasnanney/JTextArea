@@ -29,6 +29,7 @@ public class JTextFindHandler implements ActionListener{
 	private int wholeWord = 1; //1 == not whole word, -1 == whole word
 	private int endIndex = 0;
 	private String lastWord = "";
+	private int iter = 0;
 	
 	public JTextFindHandler(JTextField field, JTextView view){
 		this.field = field;
@@ -56,7 +57,7 @@ public class JTextFindHandler implements ActionListener{
 				String str = view.getText();
 				Highlighter highlighter = textPane.getHighlighter();
 				highlighter.removeAllHighlights();
-			    HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.gray);
+			    HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
 			    if(sCase == -1){
 	    			match = match.toLowerCase();
 	    			str = str.toLowerCase();
@@ -72,6 +73,23 @@ public class JTextFindHandler implements ActionListener{
 			    			newline = 0;
 			    			if (m.find()) {
 			    				int position = m.start();
+			    				int original = position;
+			    				if(lastWord.equals(match)){
+			    					iter++;
+					    			int i = iter;
+			    					while(i > 0){
+			    						if(m.find()){
+						    				position = m.start();
+						    			} else{
+						    				iter = 0;
+						    				position = original;
+						    			}
+			    						i--;
+			    					}
+					    		} else{
+					    			lastWord = "";
+					    			iter = 0;
+					    		}
 			    				p2 = Pattern.compile("\n");
 				    			m2 = p2.matcher(str);
 				    			while(m2.find()){
@@ -91,7 +109,14 @@ public class JTextFindHandler implements ActionListener{
 					            JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
 						    	return;
 			    			}
+			    			lastWord = match;
 			    			break;
+			    		}
+			    		if(!str.contains(match)){
+			    			String message = "Word: " + match + " not found.";
+				            String title = "Error";
+				            JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
+					    	return;
 			    		}
 			    		p0 = str.indexOf(match);
 			    		p1 = p0 + match.length();
@@ -150,6 +175,12 @@ public class JTextFindHandler implements ActionListener{
 						    	return;
 			    			}
 			    			break;
+			    		}
+			    		if(!str.contains(match)){
+			    			String message = "Word: " + match + " not found.";
+				            String title = "Error";
+				            JOptionPane.showConfirmDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
+					    	return;
 			    		}
 			    		end = str.lastIndexOf(match);
 					    p0 = str.indexOf(match);

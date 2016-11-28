@@ -27,6 +27,8 @@ public class JTextFindHandler implements ActionListener{
 	private int action = 0; //0 == find, 1 == find all
 	private int sCase = 1; //1 == case sensitive, -1 == ignore case
 	private int wholeWord = 1; //1 == not whole word, -1 == whole word
+	private int endIndex = 0;
+	private String lastWord = "";
 	
 	public JTextFindHandler(JTextField field, JTextView view){
 		this.field = field;
@@ -63,7 +65,7 @@ public class JTextFindHandler implements ActionListener{
 			    	
 			    }
 			    switch(action){
-			    	case 0:
+			    	case 0: //Find
 			    		if(wholeWord == -1){
 			    			Pattern p = Pattern.compile("\\b" + match + "\\b");
 			    			Matcher m = p.matcher(str);
@@ -93,13 +95,23 @@ public class JTextFindHandler implements ActionListener{
 			    		}
 			    		p0 = str.indexOf(match);
 			    		p1 = p0 + match.length();
+			    		if(lastWord.equals(match)){
+			    			if(str.indexOf(match, endIndex) > 0){
+			    				p0 = str.indexOf(match, endIndex);
+			    				p1 = p0 + match.length();
+			    			}
+			    		} else{
+			    			lastWord = "";
+			    		}
+			    		endIndex = p1;
 			    		try {
 							highlighter.addHighlight(p0, p1, painter);
 						} catch (BadLocationException e1) {
 							System.err.println(e1 + "\n");
 						}
+			    		lastWord = match;
 			    		break;
-			    	case 1:
+			    	case 1: //Find All
 			    		if(wholeWord == -1){
 			    			Pattern p = Pattern.compile("\\b" + match + "\\b");
 			    			Matcher m = p.matcher(str);

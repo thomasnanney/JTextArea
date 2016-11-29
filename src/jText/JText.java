@@ -29,6 +29,7 @@ public class JText {
 				new JTextColorController(fontColor);
 		JTextPane pane = view.getPane();
 		pane.setDocument(colorController.getDefaultDoc());
+		JTextToolbarController toolbarCont = new JTextToolbarController();
 		
 		WindowListener exitListener = new WindowAdapter() {
 		    

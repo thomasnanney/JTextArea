@@ -24,6 +24,11 @@ public class JText {
 		JTextKeyController keyController = new JTextKeyController(view);
 		keyController.registerKeyListener(controller);
 		view.registerListener(controller);
+		JTextColor fontColor = new JTextColor(view);
+		JTextColorController colorController = 
+				new JTextColorController(fontColor);
+		JTextPane pane = view.getPane();
+		pane.setDocument(colorController.getDefaultDoc());
 		
 		WindowListener exitListener = new WindowAdapter() {
 		    

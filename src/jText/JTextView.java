@@ -33,6 +33,8 @@ public class JTextView extends JFrame {
 		
 		super.setSize(900, 800);
 		
+		Container contentPane = super.getContentPane();
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		jText = new JMenu("JText");
@@ -55,52 +57,7 @@ public class JTextView extends JFrame {
         /**
          * Add JToolbar for Icon Actions
          */
-        JToolBar toolbar = new JToolBar();
-		Container contentPane = super.getContentPane();
-		toolbar.setRollover(true);
-		ImageIcon newImg = new ImageIcon("new.png");
-		JButton newFile = new JButton(newImg);
-		ImageIcon open = new ImageIcon("open.png");
-		JButton openFile = new JButton(open);
-		ImageIcon save = new ImageIcon("save.png");
-		JButton saveFile = new JButton(save);
-		ImageIcon redo = new ImageIcon("redo.png");
-		JButton redoChg = new JButton(redo);
-		ImageIcon undo = new ImageIcon("undo.png");
-		JButton undoChg = new JButton(undo);
-		ImageIcon copy = new ImageIcon("copy.png");
-		JButton copyBtn = new JButton(copy);
-		ImageIcon paste = new ImageIcon("paste.png");
-		JButton pasteBtn = new JButton(paste);
-		ImageIcon left = new ImageIcon("left.png");
-		JButton leftBtn = new JButton(left);
-		ImageIcon right = new ImageIcon("right.png");
-		JButton rightBtn = new JButton(right);
-		ImageIcon center = new ImageIcon("center.png");
-		JButton centerBtn = new JButton(center);
-		ImageIcon find = new ImageIcon("find.png");
-		JButton findBtn = new JButton(find);
-		ImageIcon findRep = new ImageIcon("find_replace.png");
-		JButton findRepBtn = new JButton(findRep);
-		ImageIcon cut = new ImageIcon ("cut.png");
-		JButton cutBtn = new JButton (cut);
-		toolbar.add(newFile);
-		toolbar.add(openFile);
-		toolbar.add(saveFile);
-		toolbar.addSeparator();
-		toolbar.add(redoChg);
-		toolbar.add(undoChg);
-		toolbar.addSeparator();
-		toolbar.add(cutBtn);
-		toolbar.add(copyBtn);
-		toolbar.add(pasteBtn);
-		toolbar.addSeparator();
-		toolbar.add(leftBtn);
-		toolbar.add(centerBtn);
-		toolbar.add(rightBtn);
-		toolbar.add(findBtn);
-		toolbar.add(findRepBtn);
-		contentPane.add(toolbar, BorderLayout.NORTH);
+        JTextToolbarView toolbar = new JTextToolbarView(contentPane);
         
 		/**
 		 * JPopUpMenu on Right-Click
@@ -217,6 +174,9 @@ public class JTextView extends JFrame {
 		viewMenu.add(font);
 		JMenuItem paragraph = new JMenuItem("Paragraph");
 		viewMenu.add(paragraph);
+		JCheckBoxMenuItem toolbarSelect = new JCheckBoxMenuItem("Toolbar");
+		toolbarSelect.setState(true);
+		viewMenu.add(toolbarSelect);
 		
 		/**
 		 * code to use undo and redo

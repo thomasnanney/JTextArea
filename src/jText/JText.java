@@ -6,6 +6,8 @@ package jText;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 
 /**
  * @authors Daniel Larsen, Thomas Nanney, Jacob Lahav, Jose Bocanegra, Baraon Gallegos
@@ -29,6 +31,17 @@ public class JText {
 				new JTextColorController(fontColor);
 		JTextPane pane = view.getPane();
 		pane.setDocument(colorController.getDefaultDoc());
+		
+		/**
+		 * code to use undo and redo
+		 */
+		pane.getDocument().addUndoableEditListener(
+				new UndoableEditListener(){
+					public void undoableEditHappened(UndoableEditEvent e){
+						view.getUndoManager().addEdit(e.getEdit());
+					}
+				}
+		);
 		
 		WindowListener exitListener = new WindowAdapter() {
 		    

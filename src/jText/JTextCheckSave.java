@@ -36,6 +36,7 @@ public class JTextCheckSave {
 					String str = view.getText();
 					saveAs.saveText(str);
 					model.setName(saveAs.getName());
+					view.setTitle("JText: A simple text editor - " + model.getName());
 				} catch (IOException e1) {
 					if(e1.getMessage().equalsIgnoreCase("User selected cancel")){
 						return;
@@ -46,6 +47,7 @@ public class JTextCheckSave {
 				File file = new File(model.getName());
 				String str = view.getText();
 				save = new JTextControllerSave(file, str);
+				view.setTitle("JText: A simple text editor - " + model.getName());
 			}
         }
 	}

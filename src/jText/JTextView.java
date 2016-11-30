@@ -180,18 +180,6 @@ public class JTextView extends JFrame {
 		viewMenu.add(toolbarSelect);
 		
 		/**
-		 * code to use undo and redo
-		 */
-		
-		textPane.getDocument().addUndoableEditListener(
-				new UndoableEditListener(){
-					public void undoableEditHappened(UndoableEditEvent e){
-						undoManager.addEdit(e.getEdit());
-					}
-				}
-		);
-		
-		/**
 		 * Code to delete highlights when key is typed
 		 */
 		JTextHighlightController highlight = new JTextHighlightController(this);

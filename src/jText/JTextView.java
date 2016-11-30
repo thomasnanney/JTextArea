@@ -151,7 +151,7 @@ public class JTextView extends JFrame {
 		 * 	same to popUpMenu (On right-click)
 		 */
 		
-		JMenuItem undoButton = new JMenuItem("Undo   CTRL+Z");
+		JMenuItem undoButton = new JMenuItem("Undo");
 		edit.add(undoButton);
 		JMenuItem redoButton = new JMenuItem("Redo");
 		edit.add(redoButton);

@@ -2,7 +2,6 @@ package jText;
 import com.inet.jortho.SpellChecker;
 
 import javax.swing.JMenu;
-import javax.swing.JTextPane;
 import javax.swing.text.JTextComponent;
 
 import com.inet.jortho.FileUserDictionary;

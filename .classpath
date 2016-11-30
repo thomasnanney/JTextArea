@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/Referenced Libraries"/>
-	<classpathentry kind="lib" path="jortho.jar"/>
+	<classpathentry exported="true" kind="lib" path="jortho.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

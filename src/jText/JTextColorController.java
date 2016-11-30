@@ -34,7 +34,7 @@ public class JTextColorController {
     		StyleConstants.Foreground, Color.ORANGE);
 
 	@SuppressWarnings("serial")
-	public JTextColorController(JTextColor fontColor) {
+	public JTextColorController(final JTextColor fontColor) {
 		this.fontColor = fontColor;
 		defaultDoc = new DefaultStyledDocument() {
             public void insertString (int offs, String str, AttributeSet a) throws BadLocationException {

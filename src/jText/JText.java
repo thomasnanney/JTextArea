@@ -18,8 +18,8 @@ public class JText {
 	 */
 	public static void main(String[] args) {
 		
-		JTextModel model = new JTextModel();
-		JTextView view = new JTextView(model);
+		final JTextModel model = new JTextModel();
+		final JTextView view = new JTextView(model);
 		JTextController controller = new JTextController(model,view);
 		JTextKeyController keyController = new JTextKeyController(view);
 		keyController.registerKeyListener(controller);

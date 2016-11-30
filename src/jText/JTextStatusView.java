@@ -12,7 +12,7 @@ import javax.swing.text.Utilities;
 public class JTextStatusView {
 	private JTextField status;
 	
-	public JTextStatusView(JTextPane textPane, Container contentPane){
+	public JTextStatusView(final JTextPane textPane, Container contentPane){
 		textPane.addCaretListener(new CaretListener() {
             // Each time the caret is moved, it will trigger the listener and its method caretUpdate.
             // It will then pass the event to the update method including the source of the event (which is our textarea control)

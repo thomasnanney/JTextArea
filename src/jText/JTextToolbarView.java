@@ -9,15 +9,15 @@ public class JTextToolbarView extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextToolbarModel model;
+	//private JTextToolbarModel model;
 	private JToolBar toolbar;
 
-	public JTextToolbarView(Container contentPane){
+	public JTextToolbarView(Container contentPane, JToolBar toolbar){
 		//Create Model
-		this.model = new JTextToolbarModel();
+		//this.model = new JTextToolbarModel();
 		
 		//Create toolbar
-		this.toolbar = new JToolBar();
+		this.toolbar = toolbar;
 		toolbar.setRollover(true);
 		
 		//Create Buttons and Icons
@@ -98,7 +98,5 @@ public class JTextToolbarView extends JFrame {
 	
 	public Component[] getComponents(){
 		return toolbar.getComponents();
-		
 	}
-	
 }

@@ -1,9 +1,6 @@
 package jText;
 
 import java.awt.Color;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
@@ -34,6 +31,7 @@ public class JTextColorController {
     final AttributeSet attributeSetGreen = styleContext.addAttribute(styleContext.getEmptySet(),
     		StyleConstants.Foreground, Color.GREEN);
 
+	@SuppressWarnings("serial")
 	public JTextColorController(JTextColor fontColor) {
 		this.fontColor = fontColor;
 		defaultDoc = new DefaultStyledDocument() {

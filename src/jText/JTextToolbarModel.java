@@ -1,4 +1,4 @@
-package jText;
+/*package jText;
 
 public class JTextToolbarModel {
 	
@@ -12,4 +12,4 @@ public class JTextToolbarModel {
 		this.isVisible = isVisible;
 	}
 
-}
+}*/

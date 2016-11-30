@@ -26,7 +26,7 @@ public class JTextView extends JFrame {
 	private JPopupMenu menu = new JPopupMenu("Popup");
 	private JTextPane textPane;
     private StyledDocument styledDocument;
-    private JTextToolbarView toolbar;
+    private JTextToolbarView toolbarView;
 	
 	
 	
@@ -75,11 +75,6 @@ public class JTextView extends JFrame {
 					}
 				}
 		);
-		
-        /**
-         * Add JToolbar for Icon Actions
-         */
-        toolbar = new JTextToolbarView(contentPane);
         
 		/**
 		 * JPopUpMenu on Right-Click
@@ -200,6 +195,15 @@ public class JTextView extends JFrame {
 		toolbarSelect.setState(true);
 		viewMenu.add(toolbarSelect);
 		
+		JToolBar toolbar = new JToolBar();
+		JTextToolbarController tControl = new JTextToolbarController(toolbar);
+		toolbarSelect.addActionListener(tControl);
+		
+		/**
+         * Add JToolbar for Icon Actions
+         */
+		toolbarView = new JTextToolbarView(contentPane, toolbar);
+        
 		/**
 		 * Code to delete highlights when key is typed
 		 */
@@ -297,7 +301,7 @@ public class JTextView extends JFrame {
 			}
 		}
 		
-		Component[] toolbarComponents = toolbar.getComponents();
+		Component[] toolbarComponents = toolbarView.getComponents();
 		for(Component toolbarComponent : toolbarComponents){
 			if ( toolbarComponent instanceof AbstractButton) {
 				AbstractButton button = (AbstractButton) toolbarComponent;

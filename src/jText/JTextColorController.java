@@ -30,6 +30,8 @@ public class JTextColorController {
     		StyleConstants.Foreground, Color.BLUE);
     final AttributeSet attributeSetGreen = styleContext.addAttribute(styleContext.getEmptySet(),
     		StyleConstants.Foreground, Color.GREEN);
+    final AttributeSet attributeSetOrange = styleContext.addAttribute(styleContext.getEmptySet(),
+    		StyleConstants.Foreground, Color.ORANGE);
 
 	@SuppressWarnings("serial")
 	public JTextColorController(JTextColor fontColor) {
@@ -51,6 +53,8 @@ public class JTextColorController {
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetRed, false);
                         } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(int|String|char|boolean|long|float|double)")){
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetBlue, false);
+                        } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(\\{|\\}|\\(|\\)|\\[|\\])")){
+                            setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetOrange, false);
                         } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(private|static|public|protected|final|package|import|define|include|return)")){
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetGreen, false);
                         } else {
@@ -74,6 +78,8 @@ public class JTextColorController {
                     setCharacterAttributes(start, end - start, attributeSetRed, false);
                 } else if (txt.substring(start, end).matches("(\\W)*(int|String|char|boolean|long|float)")){
                     setCharacterAttributes(start, end - start, attributeSetBlue, false);
+                } else if (txt.substring(start, end).matches("(\\W)*(\\{|\\}|\\(|\\)|\\[|\\])")){
+                    setCharacterAttributes(start, end - start, attributeSetOrange, false);
                 } else if (txt.substring(start, end).matches("(\\W)*(private|static|public|protected|final|package|import|define|include|return)")){
                     setCharacterAttributes(start, end - start, attributeSetGreen, false);
                 }else {

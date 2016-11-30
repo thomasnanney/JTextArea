@@ -23,7 +23,7 @@ public class JText {
 		JTextController controller = new JTextController(model,view);
 		JTextKeyController keyController = new JTextKeyController(view);
 		keyController.registerKeyListener(controller);
-		view.registerListener(controller);
+		view.registerListener(controller);		
 		JTextColor fontColor = new JTextColor(view);
 		JTextColorController colorController = 
 				new JTextColorController(fontColor);

@@ -25,6 +25,7 @@ public class JTextView extends JFrame {
 	private JPopupMenu menu = new JPopupMenu("Popup");
 	private JTextPane textPane;
     private StyledDocument styledDocument;
+    private JTextToolbarView toolbar;
 	
 	
 	
@@ -57,7 +58,7 @@ public class JTextView extends JFrame {
         /**
          * Add JToolbar for Icon Actions
          */
-        JTextToolbarView toolbar = new JTextToolbarView(contentPane);
+        toolbar = new JTextToolbarView(contentPane);
         
 		/**
 		 * JPopUpMenu on Right-Click
@@ -283,6 +284,14 @@ public class JTextView extends JFrame {
 		for(Component viewComponent : viewComponents) {
 			if ( viewComponent instanceof AbstractButton) {
 				AbstractButton button = (AbstractButton) viewComponent;
+				button.addActionListener(controller);
+			}
+		}
+		
+		Component[] toolbarComponents = toolbar.getComponents();
+		for(Component toolbarComponent : toolbarComponents){
+			if ( toolbarComponent instanceof AbstractButton) {
+				AbstractButton button = (AbstractButton) toolbarComponent;
 				button.addActionListener(controller);
 			}
 		}

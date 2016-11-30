@@ -9,36 +9,59 @@ public class JTextToolbarView extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JTextToolbarModel model;
+	private JToolBar toolbar;
 
 	public JTextToolbarView(Container contentPane){
-		JToolBar toolbar = new JToolBar();
+		//Create Model
+		this.model = new JTextToolbarModel();
+		
+		//Create toolbar
+		this.toolbar = new JToolBar();
 		toolbar.setRollover(true);
+		
+		//Create Buttons and Icons
 		ImageIcon newImg = new ImageIcon("new.png");
 		JButton newFile = new JButton(newImg);
+		newFile.setActionCommand("New");
 		ImageIcon open = new ImageIcon("open.png");
 		JButton openFile = new JButton(open);
+		openFile.setActionCommand("Open");
 		ImageIcon save = new ImageIcon("save.png");
 		JButton saveFile = new JButton(save);
+		saveFile.setActionCommand("Save");
 		ImageIcon redo = new ImageIcon("redo.png");
 		JButton redoChg = new JButton(redo);
+		redoChg.setActionCommand("Redo");
 		ImageIcon undo = new ImageIcon("undo.png");
 		JButton undoChg = new JButton(undo);
+		undoChg.setActionCommand("Undo");
 		ImageIcon copy = new ImageIcon("copy.png");
 		JButton copyBtn = new JButton(copy);
+		copyBtn.setActionCommand("Copy");
 		ImageIcon paste = new ImageIcon("paste.png");
 		JButton pasteBtn = new JButton(paste);
+		pasteBtn.setActionCommand("Paste");
 		ImageIcon left = new ImageIcon("left.png");
 		JButton leftBtn = new JButton(left);
+		leftBtn.setActionCommand("Left");
 		ImageIcon right = new ImageIcon("right.png");
 		JButton rightBtn = new JButton(right);
+		rightBtn.setActionCommand("Right");
 		ImageIcon center = new ImageIcon("center.png");
 		JButton centerBtn = new JButton(center);
+		centerBtn.setActionCommand("Center");
 		ImageIcon find = new ImageIcon("find.png");
 		JButton findBtn = new JButton(find);
+		findBtn.setActionCommand("Find");
 		ImageIcon findRep = new ImageIcon("find_replace.png");
 		JButton findRepBtn = new JButton(findRep);
+		findRepBtn.setActionCommand("Replace");
 		ImageIcon cut = new ImageIcon ("cut.png");
 		JButton cutBtn = new JButton (cut);
+		cutBtn.setActionCommand("Cut");
+		
+		//Add tooltips
 		newFile.setToolTipText("New File");
 		openFile.setToolTipText("Open");
 		saveFile.setToolTipText("Save");
@@ -52,6 +75,8 @@ public class JTextToolbarView extends JFrame {
 		rightBtn.setToolTipText("Align Right");
 		findBtn.setToolTipText("Find");
 		findRepBtn.setToolTipText("Find & Replace");
+		
+		//Add buttons to bar and bar to pane.
 		toolbar.add(newFile);
 		toolbar.add(openFile);
 		toolbar.add(saveFile);
@@ -69,6 +94,11 @@ public class JTextToolbarView extends JFrame {
 		toolbar.add(findBtn);
 		toolbar.add(findRepBtn);
 		contentPane.add(toolbar, BorderLayout.NORTH);
+	}
+	
+	public Component[] getComponents(){
+		return toolbar.getComponents();
+		
 	}
 	
 }

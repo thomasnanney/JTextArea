@@ -1,6 +1,6 @@
 package jText;
 
-public class JTextToolbarController {
+public class JTextToolbarController{
 	JTextToolbarModel model;
 	JTextToolbarController(JTextToolbarView toolbar){
 		this.model = new JTextToolbarModel();

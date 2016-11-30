@@ -3,6 +3,7 @@ package jText;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.print.PrinterException;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
@@ -55,6 +56,25 @@ public class JTextView extends JFrame {
         textPane.setPreferredSize(new Dimension(250, 125));
         textPane.setFont(new Font("System", Font.PLAIN, 25));
         
+        /**
+         * Code to add colored words
+         */
+        JTextColor fontColor = new JTextColor(this);
+		JTextColorController colorController = 
+				new JTextColorController(fontColor);
+		textPane.setDocument(colorController.getDefaultDoc());
+		
+		/**
+		 * code to use undo and redo
+		 */
+		textPane.getDocument().addUndoableEditListener(
+				new UndoableEditListener(){
+					public void undoableEditHappened(UndoableEditEvent e){
+						undoManager.addEdit(e.getEdit());
+					}
+				}
+		);
+		
         /**
          * Add JToolbar for Icon Actions
          */

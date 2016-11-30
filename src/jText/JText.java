@@ -25,23 +25,7 @@ public class JText {
 		JTextController controller = new JTextController(model,view);
 		JTextKeyController keyController = new JTextKeyController(view);
 		keyController.registerKeyListener(controller);
-		view.registerListener(controller);		
-		JTextColor fontColor = new JTextColor(view);
-		JTextColorController colorController = 
-				new JTextColorController(fontColor);
-		JTextPane pane = view.getPane();
-		pane.setDocument(colorController.getDefaultDoc());
-		
-		/**
-		 * code to use undo and redo
-		 */
-		pane.getDocument().addUndoableEditListener(
-				new UndoableEditListener(){
-					public void undoableEditHappened(UndoableEditEvent e){
-						view.getUndoManager().addEdit(e.getEdit());
-					}
-				}
-		);
+		view.registerListener(controller);
 		
 		WindowListener exitListener = new WindowAdapter() {
 		    

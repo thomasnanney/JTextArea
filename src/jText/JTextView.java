@@ -67,6 +67,7 @@ public class JTextView extends JFrame {
 		/**
 		 * code to use undo and redo
 		 */
+		undoManager.setLimit(1000);
 		textPane.getDocument().addUndoableEditListener(
 				new UndoableEditListener(){
 					public void undoableEditHappened(UndoableEditEvent e){

@@ -51,7 +51,7 @@ public class JTextColorController {
                     if (indexRight == end || String.valueOf(txt.charAt(indexRight)).matches("\\W")) {
                         if (txt.substring(indexLeft, indexRight).matches("(\\W)*(if|for|while|else|switch|case)")){
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetRed, false);
-                        } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(int|String|char|boolean|long|float)")){
+                        } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(int|String|char|boolean|long|float|double)")){
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetBlue, false);
                         } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(private|static|public|protected|final|package|import|define|include|return)")){
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetGreen, false);

@@ -28,7 +28,7 @@ public class JTextView extends JFrame {
     private StyledDocument styledDocument;
     private JTextToolbarView toolbarView;
     private JTextStatusView status;
-	
+	private SpellCheck Check;
 	
 	
 	@SuppressWarnings("null")
@@ -38,7 +38,7 @@ public class JTextView extends JFrame {
 		super.setSize(900, 800);
 		
 		Container contentPane = super.getContentPane();
-		SpellCheck Check = new SpellCheck();
+		Check = new SpellCheck();
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		jText = new JMenu("JText");
@@ -171,6 +171,7 @@ public class JTextView extends JFrame {
 		JMenuItem selectAllButton = new JMenuItem("Select All");
 		edit.add(selectAllButton);
 		menu.add(selectAllButton);
+		edit.addSeparator();
 		
 		/**
 		 * Add styles menu and items on popUpMenu (Right-click)
@@ -189,6 +190,14 @@ public class JTextView extends JFrame {
 		
 		JTextFontSelectedHandler fontHandler = new JTextFontSelectedHandler(textPane);
 		registerStyles(fontHandler);
+		
+		/**
+		 * Add Spellchecker Menu
+		 */
+		menu.addSeparator();
+		menu.add(Check.addMenu());
+		JMenuItem spelling = new JMenuItem("Spell Check");
+		edit.add(spelling);
 		
 		/**
 		 * add viewMenu items
@@ -396,6 +405,10 @@ public class JTextView extends JFrame {
 			e.printStackTrace();
 			
 		}
+	}
+	
+	public SpellCheck getCheck(){
+		return Check;
 	}
 	
 	

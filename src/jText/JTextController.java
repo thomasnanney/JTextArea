@@ -17,11 +17,13 @@ public class JTextController implements ActionListener{
 	private JTextControllerSave save;
 	private UndoManager undoManager;
 	private JTextCheckSave checkSave;
+	private SpellCheck check;
 	
 	public JTextController(JTextModel model,JTextView view) {
 		this.view = view;
 		this.model = model;
 		this.undoManager = view.getUndoManager();
+		this.check = view.getCheck();
 	}
 
 	@Override
@@ -154,6 +156,9 @@ public class JTextController implements ActionListener{
 		}else if(command.equals("Right") | command.equals("Left") | command.equals("Center")){
 			JTextParagraphHandler pHandler = new JTextParagraphHandler(view);
 			pHandler.action(command);
+		}
+		else if (command.equals("Spell Check")){
+			check.getDialogBox(view.getPane());
 		}
 	}
 }

@@ -27,6 +27,7 @@ public class JTextView extends JFrame {
 	private JTextPane textPane;
     private StyledDocument styledDocument;
     private JTextToolbarView toolbarView;
+    private JTextStatusView status;
 	
 	
 	
@@ -55,6 +56,8 @@ public class JTextView extends JFrame {
         textPane = new JTextPane(styledDocument);
         textPane.setPreferredSize(new Dimension(250, 125));
         textPane.setFont(new Font("System", Font.PLAIN, 25));
+        status = new JTextStatusView(textPane,contentPane);
+        
         
         /**
          * Code to add colored words

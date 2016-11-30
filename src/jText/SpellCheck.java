@@ -12,7 +12,7 @@ public class SpellCheck {
 				String userDictionaryPath = "/dictionary/";
 
 				//SET DICTIONARY PROVIDER FROM DICTIONARY PATH
-				SpellChecker.setUserDictionaryProvider(new FileUserDictionary(userDictionaryPath));
+				SpellChecker.setUserDictionaryProvider(new FileUserDictionary(null));
 
 				//REGISTER DICTIONARY
 				SpellChecker.registerDictionaries(getClass().getResource(userDictionaryPath), "en");

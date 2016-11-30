@@ -174,10 +174,6 @@ public class JTextView extends JFrame {
 		edit.addSeparator();
 		
 		/**
-		 * add spellchecker menu to rightclick menu
-		 */
-		menu.add(Check.getSpellCheckerMenu());
-		/**
 		 * Add styles menu and items on popUpMenu (Right-click)
 		 */
 		stylesMenu = new JMenu("Font");

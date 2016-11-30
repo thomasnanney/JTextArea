@@ -143,15 +143,15 @@ public class JTextController implements ActionListener{
 			view.selectAll();
 		} else if (command.equals("Replace")) {
 			JTextReplace replaceWindow = new JTextReplace(view);
-			replaceWindow.setBounds(1550, 120, 350, 210);
+			replaceWindow.setBounds(1550, 120, 350, 180);
 			replaceWindow.setVisible(true);
 		} else if(command.equals("Font")){
 			JTextFont fontWindow = new JTextFont(view);
-			fontWindow.setBounds(1550, 120, 350, 210);
+			fontWindow.setBounds(1550, 120, 350, 125);
 			fontWindow.setVisible(true);
 		}else if(command.equals("Paragraph")){
 			JTextParagraph paragraphWindow = new JTextParagraph(view);
-			paragraphWindow.setBounds(1550, 120, 350, 210);
+			paragraphWindow.setBounds(1550, 120, 350, 60);
 			paragraphWindow.setVisible(true);
 		}else if(command.equals("Right") | command.equals("Left") | command.equals("Center")){
 			JTextParagraphHandler pHandler = new JTextParagraphHandler(view);

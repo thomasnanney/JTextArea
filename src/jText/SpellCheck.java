@@ -1,13 +1,14 @@
 package jText;
 import com.inet.jortho.SpellChecker;
 
+import javax.swing.JMenu;
 import javax.swing.JTextPane;
 import javax.swing.text.JTextComponent;
 
 import com.inet.jortho.FileUserDictionary;
 
 public class SpellCheck {
-	public void initialiseSpellChecker(JTextComponent textPane) {
+	public SpellCheck(JTextComponent textPane) {
 		//FILE LOCATION OF DICTIONARY
 		String userDictionaryPath = "/dictionary/";
 
@@ -19,5 +20,9 @@ public class SpellCheck {
 		
 		SpellChecker.register(textPane);
 		
+	}
+	
+	public JMenu getSpellCheckerMenu(){
+		return SpellChecker.createCheckerMenu();
 	}
 }

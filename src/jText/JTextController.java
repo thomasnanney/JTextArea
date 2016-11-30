@@ -101,6 +101,7 @@ public class JTextController implements ActionListener{
 		} else if (command.equals("Undo")) {
 			try {
 				undoManager.undo();
+				undoManager.undo();
 			} catch (CannotUndoException e1){
 				if(e1.equals(null)){
 					return;
@@ -111,6 +112,7 @@ public class JTextController implements ActionListener{
 			}
 		} else if (command.equals("Redo")) {
 			try {
+				undoManager.redo();
 				undoManager.redo();
 			} catch (CannotRedoException e1){
 				if(e1.equals(null)){

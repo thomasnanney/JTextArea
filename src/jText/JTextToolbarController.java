@@ -5,7 +5,7 @@ public class JTextToolbarController{
 	JTextToolbarController(JTextToolbarView toolbar){
 		this.model = new JTextToolbarModel();
 		while(!model.isVisible()){
-			toolbar.setVisible(false);
-		}
+				toolbar.setVisible(false);
 		}
 	}
+}

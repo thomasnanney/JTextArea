@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import javax.swing.undo.*;
 
 public class JTextController implements ActionListener{
@@ -152,6 +151,9 @@ public class JTextController implements ActionListener{
 			JTextParagraph paragraphWindow = new JTextParagraph(view);
 			paragraphWindow.setBounds(1550, 120, 350, 210);
 			paragraphWindow.setVisible(true);
+		}else if(command.equals("Right") | command.equals("Left") | command.equals("Center")){
+			JTextParagraphHandler pHandler = new JTextParagraphHandler(view);
+			pHandler.action(command);
 		}
 	}
 }

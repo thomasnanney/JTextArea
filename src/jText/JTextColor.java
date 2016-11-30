@@ -10,6 +10,7 @@ import javax.swing.JTextPane;
  *
  */
 
+@SuppressWarnings("serial")
 public class JTextColor extends JFrame{
 	JTextView view;
 	JTextPane pane;

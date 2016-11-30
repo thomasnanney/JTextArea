@@ -31,13 +31,14 @@ public class JTextView extends JFrame {
 	
 	
 	
+	@SuppressWarnings("null")
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
 		
 		super.setSize(900, 800);
 		
 		Container contentPane = super.getContentPane();
-		
+		SpellCheck Check = new SpellCheck();
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		jText = new JMenu("JText");
@@ -57,6 +58,7 @@ public class JTextView extends JFrame {
         textPane.setPreferredSize(new Dimension(250, 125));
         textPane.setFont(new Font("System", Font.PLAIN, 25));
         status = new JTextStatusView(textPane,contentPane);
+        
         
         
         /**
@@ -87,6 +89,7 @@ public class JTextView extends JFrame {
 		JScrollPane textScroller = new JScrollPane(textPane);
 		//Container contentPane = super.getContentPane();
 		contentPane.add(textScroller, BorderLayout.CENTER);
+		Check.initialiseSpellChecker(textPane);
 		
 		/**
 		 * Add JText menu items to jtext menu

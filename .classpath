@@ -2,5 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Referenced Libraries"/>
+	<classpathentry kind="lib" path="C:/Users/Jacob D Lahav/Desktop/JOrtho_1.0/jortho.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -25,6 +25,7 @@ public class JText {
 		keyController.registerKeyListener(controller);
 		view.registerListener(controller);
 		
+		
 		WindowListener exitListener = new WindowAdapter() {
 		    
 			@Override

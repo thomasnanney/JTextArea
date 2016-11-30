@@ -33,4 +33,9 @@ public class SpellCheck {
 		SpellChecker.showSpellCheckerDialog(textPane, null);
 	}
 	
+
+	public JMenu getSpellCheckerMenu(){
+		return SpellChecker.createCheckerMenu();
+	}
+
 }

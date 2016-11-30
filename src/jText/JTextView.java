@@ -84,12 +84,13 @@ public class JTextView extends JFrame {
 		/**
 		 * JPopUpMenu on Right-Click
 		 */
+		SpellCheck Check = new SpellCheck();
         textPane.addMouseListener(new RightClickListener());
 
 		JScrollPane textScroller = new JScrollPane(textPane);
 		//Container contentPane = super.getContentPane();
 		contentPane.add(textScroller, BorderLayout.CENTER);
-		Check.initialiseSpellChecker(textPane);
+		//Check.initialiseSpellChecker(textPane);
 		
 		/**
 		 * Add JText menu items to jtext menu
@@ -173,6 +174,10 @@ public class JTextView extends JFrame {
 		menu.add(selectAllButton);
 		edit.addSeparator();
 		
+		/**
+		 * add spellchecker menu to rightclick menu
+		 */
+		menu.add(Check.getSpellCheckerMenu());
 		/**
 		 * Add styles menu and items on popUpMenu (Right-click)
 		 */

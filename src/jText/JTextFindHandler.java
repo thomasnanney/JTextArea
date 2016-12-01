@@ -57,16 +57,20 @@ public class JTextFindHandler implements ActionListener{
 				String str = view.getText();
 				Highlighter highlighter = textPane.getHighlighter();
 				highlighter.removeAllHighlights();
-			    HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+			    HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.BLUE);
 			    if(sCase == -1){
 	    			match = match.toLowerCase();
 	    			str = str.toLowerCase();
 	    		}
+			    int newline;
+			    Pattern p2;
+			    Matcher m2;
 			    switch(action){
 			    	case 0: //Find
 			    		if(wholeWord == -1){
 			    			Pattern p = Pattern.compile("\\b" + match + "\\b");
 			    			Matcher m = p.matcher(str);
+			    			newline = 0;
 			    			if (m.find()) {
 			    				int position = m.start();
 			    				int original = position;
@@ -86,8 +90,17 @@ public class JTextFindHandler implements ActionListener{
 					    			lastWord = "";
 					    			iter = 0;
 					    		}
+			    				p2 = Pattern.compile("\n");
+			    				m2 = p2.matcher(str);
+			    				while(m2.find()){
+			    					if(m2.start() < position)
+			    						newline++;
+			    					else
+			    						break;
+			    				}
 			    				try {
-			    					highlighter.addHighlight(position, position + match.length(), painter);
+			    					highlighter.addHighlight(position - newline, position + match.length() - newline, painter);
+			    					//highlighter.addHighlight(position, position + match.length(), painter);
 			    				} catch (BadLocationException e1) {
 			    					System.err.println(e1 + "\n");
 			    					}
@@ -117,8 +130,18 @@ public class JTextFindHandler implements ActionListener{
 			    			lastWord = "";
 			    		}
 			    		endIndex = p1;
+			    		p2 = Pattern.compile("\n");
+			    		m2 = p2.matcher(str);
+			    		newline = 0;
+			    		while(m2.find()){
+			    			if(m2.start() < p0)
+			    				newline++;
+			    			else
+			    				break;
+			    		}
 			    		try {
-							highlighter.addHighlight(p0, p1, painter);
+			    			highlighter.addHighlight(p0 - newline, p1 - newline, painter);
+							//highlighter.addHighlight(p0, p1, painter);
 						} catch (BadLocationException e1) {
 							System.err.println(e1 + "\n");
 						}
@@ -132,8 +155,18 @@ public class JTextFindHandler implements ActionListener{
 			    			while(m.find()) {
 			    				count ++;
 			    				int position = m.start();
+			    				p2 = Pattern.compile("\n");
+			    				m2 = p2.matcher(str);
+			    				newline = 0;
+			    				while(m2.find()){
+			    					if(m2.start() < position)
+			    						newline++;
+			    					else
+			    						break;
+			    				}
 				    			try {
-				    				highlighter.addHighlight(position, position + match.length(), painter);
+				    				highlighter.addHighlight(position - newline, position + match.length() - newline, painter);
+				    				//highlighter.addHighlight(position, position + match.length(), painter);
 								} catch (BadLocationException e1) {
 									System.err.println(e1 + "\n");
 								}
@@ -156,16 +189,36 @@ public class JTextFindHandler implements ActionListener{
 					    p0 = str.indexOf(match);
 					    while(p0 < end){
 						    p1 = p0 + match.length();
+						    p2 = Pattern.compile("\n");
+						    m2 = p2.matcher(str);
+						    newline = 0;
+						    while(m2.find()){
+						    	if(m2.start() < p0)
+						    		newline++;
+						    	else
+						    		break;
+						    }
 						    try {
-								highlighter.addHighlight(p0, p1, painter);
+						    	highlighter.addHighlight(p0 - newline, p1 - newline, painter);
+								//highlighter.addHighlight(p0, p1, painter);
 							} catch (BadLocationException e1) {
 								System.err.println(e1 + "\n");
 							}
 						    p0 = str.indexOf(match, p1);
 					    }
 					    p1 = end + match.length();
+					    p2 = Pattern.compile("\n");
+					    m2 = p2.matcher(str);
+					    newline = 0;
+					    while(m2.find()){
+					    	if(m2.start() < p0)
+					    		newline++;
+					    	else
+					    		break;
+					    }
 					    try {
-							highlighter.addHighlight(end, p1, painter);
+					    	highlighter.addHighlight(end - newline, p1  - newline, painter);
+							//highlighter.addHighlight(end, p1, painter);
 						} catch (BadLocationException e1) {
 							System.err.println(e1 + "\n");
 						}

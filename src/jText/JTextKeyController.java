@@ -23,6 +23,14 @@ public class JTextKeyController {
 		textPane = view.getPane();
 		textPane.addKeyListener(new java.awt.event.KeyAdapter() {
 	        public void keyPressed(java.awt.event.KeyEvent event) {
+	        	//System.out.println(event.toString());
+	        	if(event.isShiftDown() && event.getKeyCode() == KeyEvent.VK_CLOSE_BRACKET){
+	        		String str = textPane.getText();
+	        		
+	        		JTextSpecial special = new JTextSpecial(str);
+	        		String ret = special.getSubString();
+	        		System.out.print(ret);
+	        	}
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_S) {
 	                ActionEvent e = new ActionEvent(controller, 0, "Save");
 	                controller.actionPerformed(e);

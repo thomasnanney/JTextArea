@@ -29,9 +29,11 @@ public class JTextColorController {
     final AttributeSet attributeSetBlue = styleContext.addAttribute(styleContext.getEmptySet(),
     		StyleConstants.Foreground, Color.BLUE);
     final AttributeSet attributeSetGreen = styleContext.addAttribute(styleContext.getEmptySet(),
-    		StyleConstants.Foreground, Color.GREEN);
+    		StyleConstants.Foreground, Color.GREEN.darker());
     final AttributeSet attributeSetOrange = styleContext.addAttribute(styleContext.getEmptySet(),
     		StyleConstants.Foreground, Color.ORANGE);
+    final AttributeSet attributeSetMagenta = styleContext.addAttribute(styleContext.getEmptySet(),
+    		StyleConstants.Foreground, Color.MAGENTA.darker());
 
 	@SuppressWarnings("serial")
 	public JTextColorController(final JTextColor fontColor) {
@@ -49,14 +51,14 @@ public class JTextColorController {
 
                 while (indexRight <= end) {
                     if (indexRight == end || String.valueOf(txt.charAt(indexRight)).matches("\\W")) {
-                        if (txt.substring(indexLeft, indexRight).matches("(\\W)*(if|for|while|else|switch|case)")){
-                            setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetRed, false);
+                        if (txt.substring(indexLeft, indexRight).matches("(\\W)*(if|for|while|else|switch|case|\\{|\\}|\\(|\\)|\\[|\\])")){
+                            setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetGreen, false);
                         } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(int|String|char|boolean|long|float|double)")){
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetBlue, false);
-                        } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(\\{|\\}|\\(|\\)|\\[|\\])")){
-                            setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetOrange, false);
+                        } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(void|null|NULL)")){
+                            setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetMagenta, false);
                         } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(private|static|public|protected|final|package|import|define|include|return)")){
-                            setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetGreen, false);
+                            setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetRed, false);
                         } else {
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetBlack, false);
                         }
@@ -74,14 +76,14 @@ public class JTextColorController {
                 if (start < 0) start = 0;
                 int end = fontColor.getFirst(txt, offs);
 
-                if (txt.substring(start, end).matches("(\\W)*(if|for|while|else|switch|case)")) {
-                    setCharacterAttributes(start, end - start, attributeSetRed, false);
+                if (txt.substring(start, end).matches("(\\W)*(if|for|while|else|switch|case|\\{|\\}|\\(|\\)|\\[|\\])")) {
+                    setCharacterAttributes(start, end - start, attributeSetGreen, false);
                 } else if (txt.substring(start, end).matches("(\\W)*(int|String|char|boolean|long|float)")){
                     setCharacterAttributes(start, end - start, attributeSetBlue, false);
-                } else if (txt.substring(start, end).matches("(\\W)*(\\{|\\}|\\(|\\)|\\[|\\])")){
-                    setCharacterAttributes(start, end - start, attributeSetOrange, false);
+                } else if (txt.substring(start, end).matches("(\\W)*(void|null|NULL)")){
+                    setCharacterAttributes(start, end - start, attributeSetMagenta, false);
                 } else if (txt.substring(start, end).matches("(\\W)*(private|static|public|protected|final|package|import|define|include|return)")){
-                    setCharacterAttributes(start, end - start, attributeSetGreen, false);
+                    setCharacterAttributes(start, end - start, attributeSetRed, false);
                 }else {
                     setCharacterAttributes(start, end - start, attributeSetBlack, false);
                 }

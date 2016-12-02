@@ -9,7 +9,7 @@ public class JTextSpecial {
 		int length = str.length();
 		int indexOfOpenBracket = -1;;
 		int numCloseBracket = 0;
-		int indexOfStartLine = -1;
+		int indexOfStartLine = 0;
 		for(int i = length-1; i >=0 ; i--){
 			char c = str.charAt(i);
 			if(c == '}'){
@@ -32,7 +32,8 @@ public class JTextSpecial {
 				break;	
 			}
 		}
-		 this.ret = str.substring(indexOfStartLine,indexOfOpenBracket-1);
+		System.out.println(indexOfStartLine + " " + indexOfOpenBracket);
+		 this.ret = str.substring(indexOfStartLine,indexOfOpenBracket);
 		}
 	
 	public String getSubString(){

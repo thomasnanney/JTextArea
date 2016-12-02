@@ -30,20 +30,9 @@ public class JTextKeyController {
 	        		textPane.setSelectionStart(0);
 	        		textPane.setSelectionEnd(caret);
 	        		String str = textPane.getSelectedText();
-	        		//textPane.replaceSelection(str);
-	        		//String str = textPane.getText();
-	        		
 	        		JTextSpecial special = new JTextSpecial(str);
 	        		String ret = special.getSubString();
-	        		int indexOfClosingBracket = special.getIndexOfClosingBracket();
-	        		
-	        		//textPane.setSelectionStart(indexOfClosingBracket + 1);
-	        		//textPane.setSelectionEnd(indexOfClosingBracket +2);
-	        		//textPane.replaceSelection(ret);
-	        		
 	        		textPane.replaceSelection(str+ret);
-	        		
-	        		//System.out.print(ret);
 	        	}
 			}
 	        public void keyPressed(java.awt.event.KeyEvent event) {

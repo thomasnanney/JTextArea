@@ -2,9 +2,17 @@ package jText;
 
 public class JTextSpecial {
 	
-	String ret;
+	String returnClosingBracket;
+	String finalReturn;
 
-	public JTextSpecial(String str) {
+	public JTextSpecial(String str, String arg) {
+		if(arg == "}"){
+			this.finalReturn = closingBracket(str);
+		}
+		
+	}
+	
+	private String closingBracket(String str) {
 		int length = str.length();
 		int indexOfOpenBracket = -1;;
 		int numCloseBracket = 0;
@@ -27,11 +35,13 @@ public class JTextSpecial {
 				break;	
 			}
 		}
-		 this.ret = str.substring(indexOfStartLine,indexOfOpenBracket);
-		}
-	
+		this.returnClosingBracket = str.substring(indexOfStartLine,indexOfOpenBracket);
+		return "//end of " + this.returnClosingBracket;
+	}
+
 	public String getSubString(){
-		return "//end of " + this.ret;
+		return this.finalReturn;
+		//return "//end of " + this.returnClosingBracket;
 		
 	}
 	

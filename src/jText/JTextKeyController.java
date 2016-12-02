@@ -30,7 +30,7 @@ public class JTextKeyController {
 	        		textPane.setSelectionStart(0);
 	        		textPane.setSelectionEnd(caret);
 	        		String str = textPane.getSelectedText();
-	        		JTextSpecial special = new JTextSpecial(str);
+	        		JTextSpecial special = new JTextSpecial(str, "}");
 	        		String ret = special.getSubString();
 	        		textPane.replaceSelection(str+ret);
 	        	}

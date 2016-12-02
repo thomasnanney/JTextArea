@@ -3,10 +3,11 @@ package jText;
 public class JTextSpecial {
 	
 	String ret;
+	int length;
 
 	public JTextSpecial(String str) {
 		//System.out.println(str);
-		int length = str.length();
+		this.length = str.length();
 		int indexOfOpenBracket = -1;;
 		int numCloseBracket = 0;
 		int indexOfStartLine = 0;
@@ -14,31 +15,33 @@ public class JTextSpecial {
 			char c = str.charAt(i);
 			if(c == '}'){
 				numCloseBracket++;
-			}
-			if((c == '{') && numCloseBracket >0){
+			} else if((c == '{') && numCloseBracket >0){
 				numCloseBracket--;
-			}
-			if((numCloseBracket == 0) && c == '{' ){
+			} else if((numCloseBracket == 0) && c == '{' ){
 				indexOfOpenBracket = i;
 				break;
 			}
 		}
 		for(int i = indexOfOpenBracket; i>=0; i--){
 			char c = str.charAt(i);
-			System.out.println(c);
 			if(c == '\n'){
 				indexOfStartLine = i + 1;
-				System.out.println(indexOfStartLine);
+				//System.out.println(indexOfStartLine);
 				break;	
 			}
 		}
-		System.out.println(indexOfStartLine + " " + indexOfOpenBracket);
 		 this.ret = str.substring(indexOfStartLine,indexOfOpenBracket);
 		}
 	
 	public String getSubString(){
-		return this.ret;
+		return "//end of " + this.ret;
 		
 	}
+	
+	public int getIndexOfClosingBracket(){
+		return this.length;
+		}
+	
+	
 
 }

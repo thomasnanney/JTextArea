@@ -90,7 +90,7 @@ public class JTextFindHandler implements ActionListener{
 					    			lastWord = "";
 					    			iter = 0;
 					    		}
-			    				p2 = Pattern.compile("\n");
+			    				p2 = Pattern.compile("\r");
 			    				m2 = p2.matcher(str);
 			    				while(m2.find()){
 			    					if(m2.start() < position)
@@ -100,7 +100,6 @@ public class JTextFindHandler implements ActionListener{
 			    				}
 			    				try {
 			    					highlighter.addHighlight(position - newline, position + match.length() - newline, painter);
-			    					//highlighter.addHighlight(position, position + match.length(), painter);
 			    				} catch (BadLocationException e1) {
 			    					System.err.println(e1 + "\n");
 			    					}
@@ -130,7 +129,7 @@ public class JTextFindHandler implements ActionListener{
 			    			lastWord = "";
 			    		}
 			    		endIndex = p1;
-			    		p2 = Pattern.compile("\n");
+			    		p2 = Pattern.compile("\r");
 			    		m2 = p2.matcher(str);
 			    		newline = 0;
 			    		while(m2.find()){
@@ -141,7 +140,6 @@ public class JTextFindHandler implements ActionListener{
 			    		}
 			    		try {
 			    			highlighter.addHighlight(p0 - newline, p1 - newline, painter);
-							//highlighter.addHighlight(p0, p1, painter);
 						} catch (BadLocationException e1) {
 							System.err.println(e1 + "\n");
 						}
@@ -155,7 +153,7 @@ public class JTextFindHandler implements ActionListener{
 			    			while(m.find()) {
 			    				count ++;
 			    				int position = m.start();
-			    				p2 = Pattern.compile("\n");
+			    				p2 = Pattern.compile("\r");
 			    				m2 = p2.matcher(str);
 			    				newline = 0;
 			    				while(m2.find()){
@@ -166,7 +164,6 @@ public class JTextFindHandler implements ActionListener{
 			    				}
 				    			try {
 				    				highlighter.addHighlight(position - newline, position + match.length() - newline, painter);
-				    				//highlighter.addHighlight(position, position + match.length(), painter);
 								} catch (BadLocationException e1) {
 									System.err.println(e1 + "\n");
 								}
@@ -189,7 +186,7 @@ public class JTextFindHandler implements ActionListener{
 					    p0 = str.indexOf(match);
 					    while(p0 < end){
 						    p1 = p0 + match.length();
-						    p2 = Pattern.compile("\n");
+						    p2 = Pattern.compile("\r");
 						    m2 = p2.matcher(str);
 						    newline = 0;
 						    while(m2.find()){
@@ -200,14 +197,13 @@ public class JTextFindHandler implements ActionListener{
 						    }
 						    try {
 						    	highlighter.addHighlight(p0 - newline, p1 - newline, painter);
-								//highlighter.addHighlight(p0, p1, painter);
 							} catch (BadLocationException e1) {
 								System.err.println(e1 + "\n");
 							}
 						    p0 = str.indexOf(match, p1);
 					    }
 					    p1 = end + match.length();
-					    p2 = Pattern.compile("\n");
+					    p2 = Pattern.compile("\r");
 					    m2 = p2.matcher(str);
 					    newline = 0;
 					    while(m2.find()){
@@ -218,7 +214,6 @@ public class JTextFindHandler implements ActionListener{
 					    }
 					    try {
 					    	highlighter.addHighlight(end - newline, p1  - newline, painter);
-							//highlighter.addHighlight(end, p1, painter);
 						} catch (BadLocationException e1) {
 							System.err.println(e1 + "\n");
 						}

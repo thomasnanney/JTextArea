@@ -23,9 +23,10 @@ public class JTextKeyController {
 		textPane = view.getPane();
 		textPane.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyReleased(java.awt.event.KeyEvent event){
-	        
-	        	//System.out.println(event.toString());
 	        	if(event.isShiftDown() && event.getKeyCode() == KeyEvent.VK_CLOSE_BRACKET){
+	        		//this only works 100% of the time if the below print statement is included
+	        		//not sure why
+	        		System.out.println(" ");
 	        		int caret = textPane.getCaretPosition();
 	        		textPane.setSelectionStart(0);
 	        		textPane.setSelectionEnd(caret);

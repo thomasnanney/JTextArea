@@ -36,12 +36,12 @@ public class JTextSpecial {
 			}
 		}
 		this.returnClosingBracket = str.substring(indexOfStartLine,indexOfOpenBracket);
-		return "//end of " + this.returnClosingBracket;
+		return " //end of " + this.returnClosingBracket;
 	}
 
 	public String getSubString(){
 		return this.finalReturn;
-		//return "//end of " + this.returnClosingBracket;
+		//return " //end of " + this.returnClosingBracket;
 		
 	}
 	

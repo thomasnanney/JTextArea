@@ -143,7 +143,7 @@ public class JTextController implements ActionListener{
 			view.selectAll();
 		} else if (command.equals("Replace")) {
 			JTextReplace replaceWindow = new JTextReplace(view);
-			replaceWindow.setBounds(1550, 120, 350, 180);
+			replaceWindow.setBounds(1550, 120, 350, 200);
 			replaceWindow.setVisible(true);
 		} else if(command.equals("Font")){
 			JTextFont fontWindow = new JTextFont(view);

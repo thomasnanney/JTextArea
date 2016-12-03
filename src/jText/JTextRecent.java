@@ -106,8 +106,9 @@ public class JTextRecent {
 	 * @param n
 	 */
 	public void eRemove(String n){
+		String n2 = n.replace(File.separator, "/");
 		for(int i = 0; i < list.size(); i++){
-  			if(list.get(i).equals(n)){
+  			if(list.get(i).equals(n) || list.get(i).equals(n2)){
   				list.remove(i);
   				JMenuItem item = items[4 - i];
   				item.setVisible(false); //Essentially removes the item

@@ -28,7 +28,7 @@ public class JTextColor extends JFrame{
 	 * @param ndx
 	 * @return
 	 */
-	public int getLast (String txt, int ndx) {
+	public int getWordStartIndex (String txt, int ndx) {
         while (--ndx >= 0) {
         	if (String.valueOf(txt.charAt(ndx)).matches("\\W")) {
         		break;
@@ -44,7 +44,7 @@ public class JTextColor extends JFrame{
 	 * @return
 	 */
 	
-	public int getFirst (String txt, int ndx ) {
+	public int getWordAfterIndex (String txt, int ndx ) {
         for(int i = ndx; i < txt.length(); i++){
             if (String.valueOf(txt.charAt(ndx)).matches("\\W")) {
                 break;

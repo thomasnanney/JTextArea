@@ -43,14 +43,15 @@ public class JTextColorController {
                 super.insertString(offs, str, a);
 
                 String txt = getText(0, getLength());
-                int start = fontColor.getLast(txt, offs);
+                int start = fontColor.getWordStartIndex(txt, offs);
                 if (start < 0) start = 0;
-                int end = fontColor.getFirst(txt, offs + str.length());
+                int end = fontColor.getWordAfterIndex(txt, offs + str.length());
                 int indexLeft = start;
                 int indexRight = start;
 
                 while (indexRight <= end) {
                     if (indexRight == end || String.valueOf(txt.charAt(indexRight)).matches("\\W")) {
+                    	//System.out.printf("txt.substring(indexLeft, indexRight) =** %s ** on Insert\n",txt.substring(indexLeft, indexRight));
                         if (txt.substring(indexLeft, indexRight).matches("(\\W)*(if|for|while|else|switch|case|\\{|\\}|\\(|\\)|\\[|\\])")){
                             setCharacterAttributes(indexLeft, indexRight - indexLeft, attributeSetGreen, false);
                         } else if (txt.substring(indexLeft, indexRight).matches("(\\W)*(int|String|char|boolean|long|float|double)")){
@@ -72,9 +73,9 @@ public class JTextColorController {
                 super.remove(offs, len);
 
                 String txt = getText(0, getLength());
-                int start = fontColor.getLast(txt, offs);
+                int start = fontColor.getWordStartIndex(txt, offs);
                 if (start < 0) start = 0;
-                int end = fontColor.getFirst(txt, offs);
+                int end = fontColor.getWordAfterIndex(txt, offs);
 
                 if (txt.substring(start, end).matches("(\\W)*(if|for|while|else|switch|case|\\{|\\}|\\(|\\)|\\[|\\])")) {
                     setCharacterAttributes(start, end - start, attributeSetGreen, false);

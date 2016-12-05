@@ -2,6 +2,8 @@ package jText;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 /**
@@ -14,6 +16,8 @@ public class JTextKeyController {
 
 	JTextView view;
 	JTextPane textPane;
+	String prev;
+	int isComment;
 	
 	public JTextKeyController(JTextView view){
 		this.view = view;
@@ -21,13 +25,44 @@ public class JTextKeyController {
 	
 	public void registerKeyListener(final JTextController controller) {
 		textPane = view.getPane();
+		System.out.println(" ");
 		textPane.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyReleased(java.awt.event.KeyEvent event){
-				System.out.println(event.getKeyText(event.getKeyCode()));
+				if(event.getKeyCode() == KeyEvent.VK_SLASH && 
+						prev == "/"){
+					//System.out.println("HERE");
+					isComment = 1;
+					//ArrayList<String> commentLine = new ArrayList();
+					
+					
+				}
+				System.out.print(" ");
+				//System.out.println(event.getKeyText(event.getKeyCode()));
+				//evaluate on newline
+				if(event.getKeyCode() == KeyEvent.VK_ENTER && isComment > 0){
+					//System.out.println("HERE");
+					int length = textPane.getText().length();
+					int startOfComment = 0;
+					for(int j = length - 2; j > 0; j--){
+						if(textPane.getText().charAt(j)== '\n'){
+							//System.out.println("HERE");
+							startOfComment = j+1;
+							break;
+						}
+					}
+					textPane.setSelectionStart(startOfComment);
+					textPane.setSelectionEnd(textPane.getCaretPosition());
+					JTextSpecial special = new JTextSpecial(textPane.getSelectedText(), "//");
+					
+				}
+				if(event.getKeyCode() == KeyEvent.VK_SPACE){
+					
+					//System.out.println(event.getKeyText(event.getKeyCode()));
+				}
 	        	if(event.isShiftDown() && event.getKeyCode() == KeyEvent.VK_CLOSE_BRACKET){
 	        		//this only works 100% of the time if the below print statement is included
 	        		//not sure why
-	        		System.out.println(" ");
+	        		System.out.print(" ");
 	        		int caret = textPane.getCaretPosition();
 	        		textPane.setSelectionStart(0);
 	        		textPane.setSelectionEnd(caret);
@@ -36,6 +71,8 @@ public class JTextKeyController {
 	        		String ret = special.getSubString();
 	        		textPane.replaceSelection(str+ret);
 	        	}
+	        	prev = event.getKeyText(event.getKeyCode());
+	        	
 			}
 	        public void keyPressed(java.awt.event.KeyEvent event) {
 	            if (event.isControlDown() && event.getKeyCode() == KeyEvent.VK_S) {

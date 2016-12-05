@@ -1,13 +1,26 @@
 package jText;
 
+import java.awt.Color;
+
+import javax.swing.text.AttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+
 public class JTextSpecial {
 	
 	String returnClosingBracket;
 	String finalReturn;
 
+	final StyleContext styleContext = StyleContext.getDefaultStyleContext();
+    final AttributeSet attributeSetGreen = styleContext.addAttribute(styleContext.getEmptySet(),
+    		StyleConstants.Foreground, Color.GREEN);
+    
 	public JTextSpecial(String str, String arg) {
 		if(arg == "}"){
 			this.finalReturn = closingBracket(str);
+		}
+		if(arg == "//"){
+			//System.out.println(str);
 		}
 		
 	}

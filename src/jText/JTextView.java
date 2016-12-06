@@ -30,8 +30,6 @@ public class JTextView extends JFrame {
     private JTextStatusView status;
 	private SpellCheck Check;
 	
-	
-	@SuppressWarnings("null")
 	public JTextView(JTextModel model) {
 		super("JText: A simple text editor");
 		

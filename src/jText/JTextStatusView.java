@@ -1,10 +1,8 @@
 package jText;
 
 import java.awt.*;
-
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.Utilities;

@@ -51,7 +51,6 @@ public class JTextView extends JFrame {
 		 * Add area for text
 		 */
 		this.styledDocument = new DefaultStyledDocument();
-		this.setLocation(630, 100);
         textPane = new JTextPane(styledDocument);
         textPane.setPreferredSize(new Dimension(250, 125));
         textPane.setFont(new Font("System", Font.PLAIN, 25));

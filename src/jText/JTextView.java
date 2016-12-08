@@ -55,6 +55,16 @@ public class JTextView extends JFrame {
         textPane.setPreferredSize(new Dimension(250, 125));
         textPane.setFont(new Font("System", Font.PLAIN, 25));
         status = new JTextStatusView(textPane,contentPane);
+        
+        
+        
+        /**
+         * Code to add colored words
+         */
+        JTextColor fontColor = new JTextColor(this);
+		JTextColorController colorController = 
+				new JTextColorController(fontColor);
+		textPane.setDocument(colorController.getDefaultDoc());
 		
 		/**
 		 * code to use undo and redo
